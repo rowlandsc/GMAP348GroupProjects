@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour {
     public Text Player1ScoreText;
     public Text Player2ScoreText;
 
+    public int p1scorestreak = 0;
+
     public static GameManager Instance;
 
     void Awake() {
@@ -77,8 +79,24 @@ public class GameManager : MonoBehaviour {
     }
 
     public void EventGoalScored(Goal scoredOn) {
-        if (scoredOn == Player1Goal) Player2Score += 1;
+        if (scoredOn == Player1Goal)
+        {
+            Player2Score += 1;
+            p1scorestreak = 0;
+        }
         if (scoredOn == Player2Goal) Player1Score += 1;
+        {
+            p1scorestreak += 1;
+            if(p1scorestreak >= 2)
+            {
+                Player1Mallet.Acceleration = 14;
+            }
+            else
+            {
+                Player1Mallet.Acceleration = 7;
+                Player1Goal.Acceleration = 10;
+            }
+        }
     }
 
     //public void EventGoalWallHit()
