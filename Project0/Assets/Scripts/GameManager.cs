@@ -86,6 +86,15 @@ public class GameManager : MonoBehaviour {
         }
         if (scoredOn == Player2Goal) Player1Score += 1;
         {
+            int tmp = (int)Player1Goal.transform.localScale.y;
+            if (tmp > 1)
+            {
+                tmp -= 1;
+                Player1Goal.transform.localScale.Set(1.5f, tmp, 1);
+                Player1Goal.gameObject.transform.localScale.Set(1.5f, 1f, 1f);
+                Debug.Log("hit");
+            } 
+
             p1scorestreak += 1;
             if(p1scorestreak >= 2)
             {
