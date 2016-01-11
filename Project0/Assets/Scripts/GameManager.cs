@@ -90,10 +90,14 @@ public class GameManager : MonoBehaviour {
             if (tmp > 1)
             {
                 tmp -= 1;
-                Player1Goal.transform.localScale.Set(1.5f, tmp, 1);
-                Player1Goal.gameObject.transform.localScale.Set(1.5f, 1f, 1f);
-                Debug.Log("hit");
-            } 
+                Player1Goal.transform.localScale = new Vector3(1.5f, tmp, 1);
+            }
+            int tmp2 = (int)Player1Mallet.transform.localScale.x;
+            int tmp3 = (int)Player1Mallet.transform.localScale.y;
+
+            tmp2 += 1;
+            tmp3 += 1;
+            Player1Mallet.transform.localScale = new Vector3(tmp2, tmp3, 1);
 
             p1scorestreak += 1;
             if(p1scorestreak >= 2)
