@@ -108,11 +108,11 @@ public class GameManager : MonoBehaviour {
     public void EventGoalWallHit(BackWall hitOn) 
     {
         if (hitOn == Player1Wall) {
-            Player1Mallet.Acceleration = Player1Mallet.Acceleration + 1;
+            Player1Mallet.transform.localScale = new Vector3(Player1Mallet.transform.localScale.x + 0.5f, Player1Mallet.transform.localScale.y + 0.5f, Player1Mallet.transform.localScale.y);
             Debug.Log("Hit left wall");
         }
         if (hitOn == Player2Wall) {
-            Player2Mallet.Acceleration = Player2Mallet.Acceleration + 1;
+            Player2Mallet.transform.localScale = new Vector3(Player2Mallet.transform.localScale.x + 0.5f, Player2Mallet.transform.localScale.y + 0.5f, Player2Mallet.transform.localScale.y);
             Debug.Log("Hit right wall");
         }
     }
