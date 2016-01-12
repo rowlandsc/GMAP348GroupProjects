@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour {
     public Goal Player2Goal;
     public Mallet Player1Mallet;
     public Mallet Player2Mallet;
-    public BoxCollider2D Player1Wall;
-    public BoxCollider2D Player2Wall;
+    public BackWall Player1Wall;
+    public BackWall Player2Wall;
 
     public Text Player1ScoreText;
     public Text Player2ScoreText;
@@ -90,25 +90,6 @@ public class GameManager : MonoBehaviour {
             {
                 tmp -= 1;
                 Player2Goal.transform.localScale = new Vector3(1.5f, tmp, 1);
-                Player1Goal.transform.localScale = new Vector3(1.5f, 15, 1);
-            }
-            int tmp2 = (int)Player2Mallet.transform.localScale.x;
-            int tmp3 = (int)Player2Mallet.transform.localScale.y;
-
-            tmp2 += 1;
-            tmp3 += 1;
-            Player2Mallet.transform.localScale = new Vector3(tmp2, tmp3, 1);
-            Player1Mallet.transform.localScale = new Vector3(4, 4, 1);
-
-            p2scorestreak += 1;
-            if (p2scorestreak >= 2)
-            {
-                Player2Mallet.Acceleration = 14;
-            }
-            else
-            {
-                Player2Mallet.Acceleration = 7;
-                Player2Goal.Acceleration = 10;
             }
         }
         if (scoredOn == Player2Goal)
@@ -120,31 +101,19 @@ public class GameManager : MonoBehaviour {
             {
                 tmp -= 1;
                 Player1Goal.transform.localScale = new Vector3(1.5f, tmp, 1);
-                Player2Goal.transform.localScale = new Vector3(1.5f, 15, 1);
-            }
-            int tmp2 = (int)Player1Mallet.transform.localScale.x;
-            int tmp3 = (int)Player1Mallet.transform.localScale.y;
-
-            tmp2 += 1;
-            tmp3 += 1;
-            Player1Mallet.transform.localScale = new Vector3(tmp2, tmp3, 1);
-            Player2Mallet.transform.localScale = new Vector3(4, 4, 1);
-
-            p1scorestreak += 1;
-            if(p1scorestreak >= 2)
-            {
-                Player1Mallet.Acceleration = 14;
-            }
-            else
-            {
-                Player1Mallet.Acceleration = 7;
-                Player1Goal.Acceleration = 10;
             }
         }
     }
 
-    public void EventGoalWallHit()
+    public void EventGoalWallHit(BackWall hitOn) 
     {
-
+        if (hitOn == Player1Wall) {
+            Player1Mallet.Acceleration = Player1Mallet.Acceleration + 1;
+            Debug.Log("Hit left wall");
+        }
+        if (hitOn == Player2Wall) {
+            Player2Mallet.Acceleration = Player2Mallet.Acceleration + 1;
+            Debug.Log("Hit right wall");
+        }
     }
 }

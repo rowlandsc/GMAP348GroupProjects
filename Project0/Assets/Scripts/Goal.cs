@@ -35,6 +35,10 @@ public class Goal : MonoBehaviour {
             Vector2 move = new Vector2(0, Input.GetAxisRaw("P1GoalVertical")).normalized * Acceleration;
             GetComponent<Rigidbody2D>().AddForce(move, ForceMode2D.Force);
         }
+        else if (Control == GameManager.Control.PLAYER_TWO) {
+            Vector2 move = new Vector2(0, Input.GetAxisRaw("P2GoalVertical")).normalized * Acceleration;
+            GetComponent<Rigidbody2D>().AddForce(move, ForceMode2D.Force);
+        }
         else if (Control == GameManager.Control.AI) {
             GameManager.Quadrant q = GameManager.Instance.GetPuckQuadrant();
             if (q == GameManager.Quadrant.TOPLEFT || q == GameManager.Quadrant.TOPRIGHT) {

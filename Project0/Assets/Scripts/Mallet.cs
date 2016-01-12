@@ -15,6 +15,10 @@ public class Mallet : MonoBehaviour {
             Vector2 move = new Vector2(Input.GetAxisRaw("P1MalletHorizontal"), Input.GetAxisRaw("P1MalletVertical")).normalized * Acceleration;
             GetComponent<Rigidbody2D>().AddForce(move, ForceMode2D.Force);
         }
+        else if (Control == GameManager.Control.PLAYER_TWO) {
+            Vector2 move = new Vector2(Input.GetAxisRaw("P2MalletHorizontal"), Input.GetAxisRaw("P2MalletVertical")).normalized * Acceleration;
+            GetComponent<Rigidbody2D>().AddForce(move, ForceMode2D.Force);
+        }
         else if (Control == GameManager.Control.AI) {
             if (GameManager.Instance.GamePuck) {
                 GameManager.Quadrant q = GameManager.Instance.GetPuckQuadrant();

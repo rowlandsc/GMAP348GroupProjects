@@ -865,10 +865,12 @@ MonoBehaviour:
   Player2Goal: {fileID: 724310321}
   Player1Mallet: {fileID: 1134731038}
   Player2Mallet: {fileID: 697128785}
-  Player1Wall: {fileID: 1866263722}
-  Player2Wall: {fileID: 1680685823}
+  Player1Wall: {fileID: 1866263724}
+  Player2Wall: {fileID: 1680685825}
   Player1ScoreText: {fileID: 2096309967}
   Player2ScoreText: {fileID: 738890612}
+  p1scorestreak: 0
+  p2scorestreak: 0
 --- !u!1 &1134731035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,6 +1200,7 @@ GameObject:
   - 4: {fileID: 1680685822}
   - 212: {fileID: 1680685824}
   - 61: {fileID: 1680685823}
+  - 114: {fileID: 1680685825}
   m_Layer: 8
   m_Name: Right
   m_TagString: Untagged
@@ -1256,6 +1259,17 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 84d79523680b5a04d99a8ff245abe642, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1680685825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1680685821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5a409bc955eb74abc28bad06069fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1866263720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,6 +1280,7 @@ GameObject:
   - 4: {fileID: 1866263721}
   - 212: {fileID: 1866263723}
   - 61: {fileID: 1866263722}
+  - 114: {fileID: 1866263724}
   m_Layer: 8
   m_Name: Left
   m_TagString: Untagged
@@ -1324,6 +1339,17 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 84d79523680b5a04d99a8ff245abe642, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1866263724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1866263720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5a409bc955eb74abc28bad06069fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2096309965
 GameObject:
   m_ObjectHideFlags: 0
