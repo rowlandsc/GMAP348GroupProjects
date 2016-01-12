@@ -1,0 +1,38 @@
+Initialize engine version: 5.2.1f1 (44735ea161b3)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 770 (ID=0x1184)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\cody\Documents\GitHub\GMAP348GroupProjects\Project0\Project0Build\PC\Project0_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\cody\Documents\GitHub\GMAP348GroupProjects\Project0\Project0Build\PC\Project0_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\cody\Documents\GitHub\GMAP348GroupProjects\Project0\Project0Build\PC\Project0_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\cody\Documents\GitHub\GMAP348GroupProjects\Project0\Project0Build\PC\Project0_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\cody\Documents\GitHub\GMAP348GroupProjects\Project0\Project0Build\PC\Project0_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\cody\Documents\GitHub\GMAP348GroupProjects\Project0\Project0Build\PC\Project0_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\cody\Documents\GitHub\GMAP348GroupProjects\Project0\Project0Build\PC\Project0_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\cody\Documents\GitHub\GMAP348GroupProjects\Project0\Project0Build\PC\Project0_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\cody\Documents\GitHub\GMAP348GroupProjects\Project0\Project0Build\PC\Project0_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.042 seconds
+desktop: 1920x1200 59Hz; virtual: 3840x1200 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\cody\Documents\GitHub\GMAP348GroupProjects\Project0\Project0Build\PC\Project0_Data\Managed\System.dll (this message is harmless)
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 156c -> priority: 1 
+  Thread -> id: 1e24 -> priority: 1 
+Hit right wall
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Hit back wall Right
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Scored on PlayerGoal
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
