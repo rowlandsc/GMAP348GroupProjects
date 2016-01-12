@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
     public Text Player2ScoreText;
 
     public int p1scorestreak = 0;
+    public int p2scorestreak = 0;
 
     public static GameManager Instance;
 
@@ -83,15 +84,43 @@ public class GameManager : MonoBehaviour {
         {
             Player2Score += 1;
             p1scorestreak = 0;
+
+            int tmp = (int)Player2Goal.transform.localScale.y;
+            if (tmp > 1)
+            {
+                tmp -= 1;
+                Player2Goal.transform.localScale = new Vector3(1.5f, tmp, 1);
+                Player1Goal.transform.localScale = new Vector3(1.5f, 15, 1);
+            }
+            int tmp2 = (int)Player2Mallet.transform.localScale.x;
+            int tmp3 = (int)Player2Mallet.transform.localScale.y;
+
+            tmp2 += 1;
+            tmp3 += 1;
+            Player2Mallet.transform.localScale = new Vector3(tmp2, tmp3, 1);
+            Player1Mallet.transform.localScale = new Vector3(4, 4, 1);
+
+            p2scorestreak += 1;
+            if (p2scorestreak >= 2)
+            {
+                Player2Mallet.Acceleration = 14;
+            }
+            else
+            {
+                Player2Mallet.Acceleration = 7;
+                Player2Goal.Acceleration = 10;
+            }
         }
         if (scoredOn == Player2Goal)
         {
             Player1Score += 1;
+            p2scorestreak = 0;
             int tmp = (int)Player1Goal.transform.localScale.y;
             if (tmp > 1)
             {
                 tmp -= 1;
                 Player1Goal.transform.localScale = new Vector3(1.5f, tmp, 1);
+                Player2Goal.transform.localScale = new Vector3(1.5f, 15, 1);
             }
             int tmp2 = (int)Player1Mallet.transform.localScale.x;
             int tmp3 = (int)Player1Mallet.transform.localScale.y;
@@ -99,6 +128,7 @@ public class GameManager : MonoBehaviour {
             tmp2 += 1;
             tmp3 += 1;
             Player1Mallet.transform.localScale = new Vector3(tmp2, tmp3, 1);
+            Player2Mallet.transform.localScale = new Vector3(4, 4, 1);
 
             p1scorestreak += 1;
             if(p1scorestreak >= 2)
@@ -113,5 +143,8 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    //public void EventGoalWallHit()
+    public void EventGoalWallHit()
+    {
+
+    }
 }
