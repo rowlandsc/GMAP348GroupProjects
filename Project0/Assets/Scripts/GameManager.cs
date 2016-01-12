@@ -84,8 +84,9 @@ public class GameManager : MonoBehaviour {
             Player2Score += 1;
             p1scorestreak = 0;
         }
-        if (scoredOn == Player2Goal) Player1Score += 1;
+        if (scoredOn == Player2Goal)
         {
+            Player1Score += 1;
             int tmp = (int)Player1Goal.transform.localScale.y;
             if (tmp > 1)
             {
