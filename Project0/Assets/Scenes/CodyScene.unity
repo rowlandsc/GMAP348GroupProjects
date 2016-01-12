@@ -96,7 +96,7 @@ GameObject:
   - 222: {fileID: 108832776}
   - 114: {fileID: 108832775}
   m_Layer: 0
-  m_Name: Text
+  m_Name: VsCpu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,11 +205,12 @@ MonoBehaviour:
   Player2Goal: {fileID: 1169422567}
   Player1Mallet: {fileID: 1218950763}
   Player2Mallet: {fileID: 2079237647}
-  Player1Wall: {fileID: 378260321}
-  Player2Wall: {fileID: 660963882}
+  Player1Wall: {fileID: 0}
+  Player2Wall: {fileID: 0}
   Player1ScoreText: {fileID: 411346547}
   Player2ScoreText: {fileID: 566238536}
   p1scorestreak: 0
+  p2scorestreak: 0
 --- !u!1 &244536339
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,42 +268,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1169422567}
-        m_MethodName: SetPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2079237647}
-        m_MethodName: SetPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1218950763}
-        m_MethodName: SetPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1098271059}
-        m_MethodName: SetPlayer
-        m_Mode: 1
+      - m_Target: {fileID: 244536339}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1382,6 +1350,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1838184885}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1239366526
@@ -1611,7 +1590,7 @@ GameObject:
   - 222: {fileID: 1838184888}
   - 114: {fileID: 1838184887}
   m_Layer: 0
-  m_Name: Text
+  m_Name: 2vs2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
