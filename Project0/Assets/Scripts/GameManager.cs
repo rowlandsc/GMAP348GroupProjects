@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
-    public enum Control { PLAYER_ONE, PLAYER_TWO, AI };
+    public enum Control { PLAYER_ONE, PLAYER_TWO, AI, NULL};
     public enum Side { LEFT, RIGHT };
     public enum Quadrant { TOPRIGHT, TOPLEFT, BOTTOMLEFT, BOTTOMRIGHT }; 
 

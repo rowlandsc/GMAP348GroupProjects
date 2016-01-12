@@ -35,4 +35,16 @@ public class Mallet : MonoBehaviour {
             }
         }
 	}
+    public void SetPlayerOne()
+    {
+        Control = GameManager.Control.PLAYER_ONE;
+    }
+    public void SetPlayerTwo()
+    {
+        Control = GameManager.Control.PLAYER_TWO;
+    }
+    public void SetAI()
+    {
+        Control = GameManager.Control.AI;
+    }
 }
