@@ -6,6 +6,7 @@ public class InputSeriesUI : MonoBehaviour {
 
     public GameObject Timeline = null;
     List<Image> _windowMarkers = new List<Image>();
+    List<Text> _windowText = new List<Text>();
     Image _progressBar = null;
 
 	void Start () {
@@ -13,7 +14,8 @@ public class InputSeriesUI : MonoBehaviour {
         InputManager.OnStartInputSeriesWindow += OnInputWindowStart;
         InputManager.OnEndInputSeriesWindow += OnInputWindowEnd;
         InputManager.OnEndInputSeries += OnInputSeriesEnd;
-        	
+
+        Timeline.SetActive(false);
 	}
 	
 	void Update () {
@@ -25,6 +27,18 @@ public class InputSeriesUI : MonoBehaviour {
 	}
 
     void OnInputSeriesStart() {
+        Timeline.SetActive(true);
+
+        for (int i = 0; i < _windowMarkers.Count; i++) {
+            Destroy(_windowMarkers[i].gameObject);
+        }
+        for (int i=0; i<_windowText.Count; i++) {
+            Destroy(_windowText[i].gameObject);
+        }
+        _windowMarkers.Clear();
+        _windowText.Clear();
+        if (_progressBar) Destroy(_progressBar.gameObject);
+
         for (int i=0; i<=InputManager.Instance.CurrentInputStringLength; i++) {
             GameObject newWindowMarker = new GameObject("WindowMarker " + i);
             newWindowMarker.transform.SetParent(Timeline.transform);
@@ -39,6 +53,25 @@ public class InputSeriesUI : MonoBehaviour {
             _windowMarkers.Add(newImage);
         }
         _windowMarkers[0].color = Color.white;
+
+        for (int i=0; i<InputManager.Instance.CurrentInputStringLength; i++) {
+            GameObject newWindowText = new GameObject("WindowText " + i);
+            newWindowText.transform.SetParent(Timeline.transform);
+            newWindowText.transform.localScale = Vector3.one;
+            Text newText = newWindowText.AddComponent<Text>();
+
+            newText.rectTransform.anchorMin = new Vector2(_windowMarkers[i].rectTransform.anchorMax.x, 1.0f);
+            newText.rectTransform.anchorMax = new Vector2(_windowMarkers[i + 1].rectTransform.anchorMin.x, 2.0f);
+            newText.rectTransform.offsetMin = Vector2.zero;
+            newText.rectTransform.offsetMax = Vector2.zero;
+            newText.text = "";
+            newText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
+            newText.resizeTextForBestFit = true;
+            newText.resizeTextMinSize = 4;
+            newText.resizeTextMaxSize = 20;
+
+            _windowText.Add(newText);
+        }
 
         GameObject progressBarGO = new GameObject("Progress Bar");
         progressBarGO.transform.SetParent(Timeline.transform);
@@ -58,6 +91,10 @@ public class InputSeriesUI : MonoBehaviour {
         _windowMarkers[InputManager.Instance.InputString.Count].color = Color.white;
     }
     void OnInputSeriesEnd() {
+        
+    }
 
+    public void SetWindowText(int i, string text) {
+        _windowText[i].text = text;
     }
 }

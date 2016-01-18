@@ -40,9 +40,7 @@ public class InputManager : MonoBehaviour {
 	}
 	
 	void Update () {
-	    if (Input.GetKeyUp(KeyCode.RightShift) && !IsGettingInputString) {
-            StartCoroutine(GenerateNewInputSeries(5));
-        }
+	   
 	}
 
     public IEnumerator GenerateNewInputSeries(int length) {
@@ -60,7 +58,7 @@ public class InputManager : MonoBehaviour {
             float windowTime = 0;
             int timesPressed = 0;
             int timesReleased = 0;
-            bool startHeld = currentlyHeld;
+            bool startHeld = (InputString.Count > 0 && InputString[InputString.Count - 1] == InputType.HOLD);
             while (windowTime < InputWindowLength) {
                 if (Input.GetAxisRaw(InputButton) > float.Epsilon && !currentlyHeld) {
                     currentlyHeld = true;
@@ -79,14 +77,14 @@ public class InputManager : MonoBehaviour {
             if (startHeld && timesReleased > 0) {
                 InputString.Add(InputType.RELEASE);
             }
+            else if (timesPressed > timesReleased || (timesPressed == timesReleased && startHeld)) {
+                InputString.Add(InputType.HOLD);
+            }
             else if (timesPressed == 1 && timesReleased == 1) {
                 InputString.Add(InputType.PRESS);
             }
             else if (timesPressed > 1 && timesReleased > 1) {
                 InputString.Add(InputType.DOUBLETAP);
-            }
-            else if (timesPressed > timesReleased) {
-                InputString.Add(InputType.HOLD);
             }
             else {
                 InputString.Add(InputType.NONE);
