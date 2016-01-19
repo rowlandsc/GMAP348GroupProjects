@@ -42,6 +42,7 @@ public class InputSeriesUI : MonoBehaviour {
         for (int i=0; i<=InputManager.Instance.CurrentInputStringLength; i++) {
             GameObject newWindowMarker = new GameObject("WindowMarker " + i);
             newWindowMarker.transform.SetParent(Timeline.transform);
+            newWindowMarker.transform.localScale = Vector3.one;
             Image newImage = newWindowMarker.AddComponent<Image>();
 
             newImage.rectTransform.anchorMin = new Vector2(((float) i) / (InputManager.Instance.CurrentInputStringLength) - 0.005f, -0.5f);
