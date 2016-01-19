@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
     //Stats playerStats = Player.Instance.GetComponent<Stats>();
 
     public float xpEarned = 0;
+    public GameObject currentEnemy;
     
     void Awake() {
         if (Instance == null) {

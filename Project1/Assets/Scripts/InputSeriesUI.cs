@@ -53,7 +53,7 @@ public class InputSeriesUI : MonoBehaviour {
 
             _windowMarkers.Add(newImage);
         }
-        _windowMarkers[0].color = Color.white;
+        _windowMarkers[0].color = Color.black;
 
         for (int i=0; i<InputManager.Instance.CurrentInputStringLength; i++) {
             GameObject newWindowText = new GameObject("WindowText " + i);
@@ -68,6 +68,8 @@ public class InputSeriesUI : MonoBehaviour {
             newText.text = "";
             newText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
             newText.resizeTextForBestFit = true;
+            newText.color = Color.black;
+            
             newText.resizeTextMinSize = 4;
             newText.resizeTextMaxSize = 20;
 
@@ -89,7 +91,7 @@ public class InputSeriesUI : MonoBehaviour {
 
     }
     void OnInputWindowEnd() {
-        _windowMarkers[InputManager.Instance.InputString.Count].color = Color.white;
+        _windowMarkers[InputManager.Instance.InputString.Count].color = Color.black;
     }
     void OnInputSeriesEnd() {
         
