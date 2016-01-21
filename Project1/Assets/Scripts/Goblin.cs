@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
-public class Goblin : MonoBehaviour {
+public class Goblin : Enemy {
 
 	// Use this for initialization
 	void Start () {
@@ -13,8 +13,8 @@ public class Goblin : MonoBehaviour {
 	
 	}
 
-    public void GetInputSeries()
+    public override List<CombatSystem.AttackType> GetInputSeries(int length)
     {
-
+        return new List<CombatSystem.AttackType>(length);
     }
 }
