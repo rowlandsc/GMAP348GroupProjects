@@ -15,6 +15,13 @@ public class Ogre : Enemy {
 
     public override List<CombatSystem.AttackType> GetInputSeries(int length)
     {
-        return new List<CombatSystem.AttackType>(length);
+        int temp = GetComponent<Stats>().maxAttacks;
+        bool s = false;
+        List<CombatSystem.AttackType> list1 = new List<CombatSystem.AttackType>();
+        for (int i = 0; i < temp; i++)
+        {
+            list1.Add(CombatSystem.AttackType.ATTACK);
+        }
+        return list1;
     }
 }

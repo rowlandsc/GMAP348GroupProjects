@@ -15,6 +15,22 @@ public class Goblin : Enemy {
 
     public override List<CombatSystem.AttackType> GetInputSeries(int length)
     {
-        return new List<CombatSystem.AttackType>(length);
+        int temp = GetComponent<Stats>().maxAttacks;
+        bool s = false;
+        List<CombatSystem.AttackType> list1 = new List<CombatSystem.AttackType>();
+        for (int i = 0; i < temp; i++)
+        {
+            if (s == false)
+            {
+                list1.Add(CombatSystem.AttackType.QUICKATTACK);
+                s = true;
+            }
+            else
+            {
+                list1.Add(CombatSystem.AttackType.ATTACK);
+                s = false;
+            }
+        }
+        return list1;
     }
 }
