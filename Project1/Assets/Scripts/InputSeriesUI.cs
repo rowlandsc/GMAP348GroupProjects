@@ -49,7 +49,7 @@ public class InputSeriesUI : MonoBehaviour {
             newImage.rectTransform.anchorMax = new Vector2(((float) i) / (InputManager.Instance.CurrentInputStringLength) + 0.005f, 1.5f);
             newImage.rectTransform.offsetMin = new Vector2(0, 0);
             newImage.rectTransform.offsetMax = new Vector2(0, 0);
-            newImage.color = Color.red;
+            newImage.color = Color.white;
 
             _windowMarkers.Add(newImage);
         }

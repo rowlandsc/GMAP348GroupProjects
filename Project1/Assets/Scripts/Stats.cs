@@ -49,5 +49,17 @@ public class Stats : MonoBehaviour
         _cAttack = bAttackMin + (cLevel * levelDifMod * (Random.Range(bAttackMin * 100, bAttackMax * 100) * .01f));
         _cXp = bXpReward + (cLevel * levelDifMod * (Random.Range((bXpReward - 1) * 100, (bXpReward + 1) * 100) * .01f));
     }
+
+    public float GetHealth() {
+        return _cHealth;
+    }
+
+    public float GetAttack() {
+        return _cAttack;
+    }
+
+    public bool GetIsAlive() {
+        return (_cHealth > 0);
+    }
    
 }
