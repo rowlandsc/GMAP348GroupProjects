@@ -361,12 +361,12 @@ public class CombatSystem : MonoBehaviour {
         bool wait = false;
         if (playerAttack == AttackType.QUICKATTACK) {
             CombatAnimationManager.Instance.CreateCombatAnimationObject(CombatInputResultsTime, enemyReceivedQuickDamage.ToString(), false, Color.red, true);
-            // Deal quick damage to enemy
+            CurrentEnemy.GetComponent<Stats>().DealDamage(enemyReceivedQuickDamage);
             wait = true;
         }
         if (enemyAttack == AttackType.QUICKATTACK) {
             CombatAnimationManager.Instance.CreateCombatAnimationObject(CombatInputResultsTime, playerReceivedQuickDamage.ToString(), false, Color.red, true);
-            // Deal quick damage to player
+            Player.Instance.GetComponent<Stats>().DealDamage(playerReceivedQuickDamage);
             wait = true;
         }
 
@@ -382,12 +382,12 @@ public class CombatSystem : MonoBehaviour {
         wait = false;
         if (playerAttacked && playerAttack != AttackType.QUICKATTACK) {
             CombatAnimationManager.Instance.CreateCombatAnimationObject(CombatInputResultsTime, enemyReceivedDamage.ToString(), false, Color.red, true);
-            // Deal damage to enemy
+            CurrentEnemy.GetComponent<Stats>().DealDamage(enemyReceivedDamage);
             wait = true;
         }
         if (enemyAttacked && enemyAttack != AttackType.QUICKATTACK) {
             CombatAnimationManager.Instance.CreateCombatAnimationObject(CombatInputResultsTime, playerReceivedDamage.ToString(), true, Color.red, true);
-            // Deal damage to player
+            Player.Instance.GetComponent<Stats>().DealDamage(playerReceivedDamage);
             wait = true;
         }
 
@@ -401,7 +401,7 @@ public class CombatSystem : MonoBehaviour {
         }
         if (enemyReceivedStun) {
             CombatAnimationManager.Instance.CreateCombatAnimationObject(CombatInputResultsTime, "Stun", false, Color.red, true);
-            // Stun enemy
+            Stun(false, input + 1);
         }
 
         yield return new WaitForSeconds(CombatInputResultsTime);
@@ -411,7 +411,7 @@ public class CombatSystem : MonoBehaviour {
     int GetSpecialAttackCharge(bool player, int specialAttackInput) {
         if (player) {
             int charge = 0;
-            for (int i=specialAttackInput; i>=0; i--) {
+            for (int i=specialAttackInput - 1; i>=0; i--) {
                 if (_playerSeries[i] == AttackType.CHARGE) charge++;
                 else break;
             }
@@ -420,7 +420,7 @@ public class CombatSystem : MonoBehaviour {
         }
         else {
             int charge = 0;
-            for (int i = specialAttackInput; i >= 0; i--) {
+            for (int i = specialAttackInput - 1; i >= 0; i--) {
                 if (_enemySeries[i] == AttackType.CHARGE) charge++;
                 else break;
             }
@@ -507,5 +507,15 @@ public class CombatSystem : MonoBehaviour {
 
         yield return new WaitForSeconds(GameOverWaitTime);
         Application.LoadLevel("GameOver");
+    }
+
+    void OnDestroy() {
+        OnCombatStart -= CombatStart;
+        OnCombatRoundStart -= CombatRoundStart;
+        OnCombatRoundEnd -= CombatRoundEnd;
+        OnCombatInputStart -= CombatInputStart;
+        OnCombatInputEnd -= CombatInputEnd;
+        OnCombatPlayerKilled -= CombatPlayerKilled;
+        OnCombatEnemyKilled -= CombatEnemyKilled;
     }
 }

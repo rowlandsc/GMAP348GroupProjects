@@ -69,8 +69,8 @@ public class InputSeriesUI : MonoBehaviour {
 
             newText.rectTransform.anchorMin = new Vector2(_windowMarkers[i].rectTransform.anchorMax.x, 1.0f);
             newText.rectTransform.anchorMax = new Vector2(_windowMarkers[i + 1].rectTransform.anchorMin.x, 2.0f);
-            newText.rectTransform.offsetMin = new Vector2(0, -39);
-            newText.rectTransform.offsetMax = new Vector2(0, -39);
+            newText.rectTransform.offsetMin = new Vector2(0, -29);
+            newText.rectTransform.offsetMax = new Vector2(0, -29);
             newText.text = "";
             //newText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
             newText.resizeTextForBestFit = true;
@@ -102,5 +102,12 @@ public class InputSeriesUI : MonoBehaviour {
 
     public void SetWindowText(int i, string text) {
         _windowText[i].text = text;
+    }
+
+    void OnDestroy() {
+        InputManager.OnStartInputSeries -= OnInputSeriesStart;
+        InputManager.OnStartInputSeriesWindow -= OnInputWindowStart;
+        InputManager.OnEndInputSeriesWindow -= OnInputWindowEnd;
+        InputManager.OnEndInputSeries -= OnInputSeriesEnd;
     }
 }

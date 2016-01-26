@@ -109,4 +109,9 @@ public class WaveManager : MonoBehaviour {
             CurrentEnemies.Add((GameObject)GameObject.Instantiate(enemies[i], new Vector3(x, EnemyYPosition), enemies[i].transform.rotation));
         }
     }
+
+    void OnDestroy() {
+        OnWaveStart -= WaveStart;
+        OnWaveEnd -= WaveEnd;
+    }
 }

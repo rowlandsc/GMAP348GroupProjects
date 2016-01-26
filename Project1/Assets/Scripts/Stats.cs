@@ -13,7 +13,7 @@ public class Stats : MonoBehaviour
     public int maxAttacks = 5; //Talk about how we want to scale max attacks
     public int cLevel = 1; //Current level
 
-    private float _cHealth; //Current
+    public float _cHealth; //Current
     private float _cAttack; //Current
     private float _cXpReward; //Current
     private float _mHealth; //Max Health
@@ -59,7 +59,7 @@ public class Stats : MonoBehaviour
         return (_cHealth > 0);
     }
 
-    public void DealDamage(int damage)
+    public void DealDamage(float damage)
     {
         _cHealth = _cHealth - damage;
     }
