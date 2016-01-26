@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 
     public float xpEarned = 0;
    
+    public SpriteRenderer PlayerSprite;
     
     void Awake() {
         if (Instance == null) {

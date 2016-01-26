@@ -33,6 +33,11 @@ public class CombatSystem : MonoBehaviour {
     public float CombatInputWaitTime = 0.5f;
     public float CombatInputResultsTime = 1.0f;
 
+    public float PlayerDeathFadeRedTime = 2.0f;
+    public float PlayerDeathFadeSkeletonTime = 2.0f;
+    public float GameOverWaitTime = 1.0f;
+    public Sprite SkeletonSprite;
+
     List<AttackType> _playerSeries = new List<AttackType>();
     List<AttackType> _enemySeries = new List<AttackType>();
 
@@ -60,6 +65,8 @@ public class CombatSystem : MonoBehaviour {
         OnCombatInputEnd += CombatInputEnd;
         OnCombatPlayerKilled += CombatPlayerKilled;
         OnCombatEnemyKilled += CombatEnemyKilled;
+
+        
     }
 	
 	void Update () {
@@ -104,7 +111,7 @@ public class CombatSystem : MonoBehaviour {
         EnemyCombatText.text = "";
     }
     void CombatPlayerKilled() {
-
+        StartCoroutine(PlayerDeath());
     }
     void CombatEnemyKilled() {
 
@@ -471,5 +478,34 @@ public class CombatSystem : MonoBehaviour {
             default:
                 return "None";
         }
+    }
+
+    IEnumerator PlayerDeath() {
+        SpriteRenderer sr = Player.Instance.PlayerSprite;
+
+        float _timer = 0;
+        while (_timer < PlayerDeathFadeRedTime) {
+            _timer += Time.deltaTime;
+            sr.color = new Color(1, sr.color.g - Time.deltaTime / PlayerDeathFadeRedTime, sr.color.b - Time.deltaTime / PlayerDeathFadeRedTime);
+            yield return null;
+        }
+
+        _timer = 0;
+        GameObject deathSkeletonGO = new GameObject("Death Skeleton");
+        deathSkeletonGO.transform.SetParent(Player.Instance.transform);
+        deathSkeletonGO.transform.localPosition = Vector3.zero;
+        deathSkeletonGO.transform.localScale = new Vector3(4, 2, 1);
+        SpriteRenderer skeletonSR = deathSkeletonGO.AddComponent<SpriteRenderer>();
+        skeletonSR.sprite = SkeletonSprite;
+        skeletonSR.color = new Color(1, 1, 1, 0);
+        while (_timer < PlayerDeathFadeSkeletonTime) {
+            _timer += Time.deltaTime;
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, sr.color.a - Time.deltaTime / PlayerDeathFadeSkeletonTime);
+            skeletonSR.color = new Color(1, 1, 1, skeletonSR.color.a + Time.deltaTime / PlayerDeathFadeSkeletonTime);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(GameOverWaitTime);
+        Application.LoadLevel("GameOver");
     }
 }
