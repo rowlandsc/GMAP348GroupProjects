@@ -37,6 +37,7 @@ public class Player : MonoBehaviour {
     public void OnEnemyDeathXp()
     {
         xpEarned += CombatSystem.Instance.CurrentEnemy.GetComponent<Stats>().GetXpReward();
+        XpBoost(playerStats.maxAttacks - CombatSystem.Instance.CurrentAction);
         CalcLevel();
         
     }
@@ -45,7 +46,7 @@ public class Player : MonoBehaviour {
     {
         float xpBoost = CombatSystem.Instance.CurrentEnemy.GetComponent<Stats>().GetXpReward() / CombatSystem.Instance.CurrentEnemy.GetComponent<Stats>().maxAttacks * boost;
         xpEarned += xpBoost;
-        CalcLevel();
+       
                 
     }
 
