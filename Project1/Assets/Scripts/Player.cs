@@ -31,7 +31,7 @@ public class Player : MonoBehaviour {
     public void CalcLevel()
     {
         //playerStats.cLevel = ((int) xpEarned / 100) + 1;
-        playerStats.cLevel = (int)(-.000004f * Mathf.Pow(xpEarned, 2.0f) + 0.0087f * xpEarned + 1.0751f);
+        playerStats.cLevel = (int)(-.0000002f * Mathf.Pow(xpEarned, 2.0f) + 0.0039f * xpEarned + 1.7841f);
 
         playerStats.CalcStats();
 

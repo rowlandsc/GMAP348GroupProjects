@@ -368,7 +368,7 @@ public class CombatSystem : MonoBehaviour {
             wait = true;
         }
         if (enemyAttack == AttackType.QUICKATTACK) {
-            CombatAnimationManager.Instance.CreateCombatAnimationObject(CombatInputResultsTime, playerReceivedQuickDamage.ToString(), false, Color.red, true);
+            CombatAnimationManager.Instance.CreateCombatAnimationObject(CombatInputResultsTime, playerReceivedQuickDamage.ToString(), true, Color.red, true);
             Player.Instance.GetComponent<Stats>().DealDamage(playerReceivedQuickDamage);
             wait = true;
         }
