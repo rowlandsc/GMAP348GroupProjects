@@ -26,7 +26,7 @@ public class Stats : MonoBehaviour
     {
         CalcStats();
         _cHealth = _mHealth;
-
+        GetXpReward();
     }
 
     public void CalcStats()
@@ -35,7 +35,7 @@ public class Stats : MonoBehaviour
         _mHealth = bHealth + (cLevel * levelDifMod * bHealth);
 
         _cAttack = bAttackMin + (cLevel * levelDifMod * (Random.Range(bAttackMin * 100, bAttackMax * 100) * .01f));
-        _cXpReward = bXpReward + (cLevel * levelDifMod * (Random.Range((bXpReward - 1) * 100, (bXpReward + 1) * 100) * .01f));
+        
     }
 
     public float GetXpReward()
@@ -84,4 +84,5 @@ public class Stats : MonoBehaviour
     {   
         return Mathf.Round(_cAttack * (turnsCharged + 1));
     }
+   
 }

@@ -20,24 +20,38 @@ public class Player : MonoBehaviour {
     }
 
 	void Start ()
-    {
-            
+    {      
         playerStats = Player.Instance.GetComponent<Stats>();
-	    
+        CombatSystem.OnCombatEnemyKilled += OnEnemyDeathXp;  
+         
 	}
 	
-	void Update ()
-    {
-        
-    }
 
-    public void calcLevel()
+    public void CalcLevel()
     {
-        playerStats.cLevel = (int)xpEarned / 100;
-        
-
+        playerStats.cLevel = ((int) xpEarned / 100) + 1;
+        playerStats.CalcStats();
 
     }
 
+    public void OnEnemyDeathXp()
+    {
+        xpEarned += CombatSystem.Instance.CurrentEnemy.GetComponent<Stats>().GetXpReward();
+        CalcLevel();
+        
+    }
+
+    public void XpBoost(int boost)
+    {
+        float xpBoost = CombatSystem.Instance.CurrentEnemy.GetComponent<Stats>().GetXpReward() / CombatSystem.Instance.CurrentEnemy.GetComponent<Stats>().maxAttacks * boost;
+        xpEarned += xpBoost;
+        CalcLevel();
+                
+    }
+
+    public void OnDestroy()
+    {
+        CombatSystem.OnCombatEnemyKilled -= OnEnemyDeathXp;
+    }
 
 }
