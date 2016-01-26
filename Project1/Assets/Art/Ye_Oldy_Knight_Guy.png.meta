@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 82f117b16a5798d4cb5abca5fdd5f9d4
-timeCreated: 1453192145
+timeCreated: 1453797257
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -85,8 +85,8 @@ TextureImporter:
         y: 117
         width: 15
         height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_1
       rect:
@@ -95,8 +95,8 @@ TextureImporter:
         y: 117
         width: 15
         height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_2
       rect:
@@ -105,8 +105,8 @@ TextureImporter:
         y: 117
         width: 15
         height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_3
       rect:
@@ -115,8 +115,8 @@ TextureImporter:
         y: 117
         width: 15
         height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_4
       rect:
@@ -125,8 +125,8 @@ TextureImporter:
         y: 119
         width: 22
         height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_5
       rect:
@@ -136,7 +136,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_6
       rect:
@@ -145,8 +145,8 @@ TextureImporter:
         y: 95
         width: 15
         height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_7
       rect:
@@ -155,8 +155,8 @@ TextureImporter:
         y: 96
         width: 15
         height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_8
       rect:
@@ -165,8 +165,8 @@ TextureImporter:
         y: 95
         width: 13
         height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_9
       rect:
@@ -175,8 +175,8 @@ TextureImporter:
         y: 95
         width: 15
         height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_10
       rect:
@@ -185,8 +185,8 @@ TextureImporter:
         y: 96
         width: 15
         height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_11
       rect:
@@ -195,8 +195,8 @@ TextureImporter:
         y: 95
         width: 15
         height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_12
       rect:
@@ -205,8 +205,8 @@ TextureImporter:
         y: 72
         width: 17
         height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_13
       rect:
@@ -215,8 +215,8 @@ TextureImporter:
         y: 72
         width: 15
         height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_14
       rect:
@@ -225,8 +225,8 @@ TextureImporter:
         y: 71
         width: 13
         height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_15
       rect:
@@ -235,8 +235,8 @@ TextureImporter:
         y: 72
         width: 15
         height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_16
       rect:
@@ -245,8 +245,8 @@ TextureImporter:
         y: 72
         width: 18
         height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_17
       rect:
@@ -255,8 +255,8 @@ TextureImporter:
         y: 48
         width: 16
         height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_18
       rect:
@@ -265,8 +265,8 @@ TextureImporter:
         y: 50
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_19
       rect:
@@ -275,8 +275,8 @@ TextureImporter:
         y: 52
         width: 15
         height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_20
       rect:
@@ -285,8 +285,8 @@ TextureImporter:
         y: 49
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_21
       rect:
@@ -295,8 +295,8 @@ TextureImporter:
         y: 50
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_22
       rect:
@@ -305,8 +305,8 @@ TextureImporter:
         y: 52
         width: 15
         height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_23
       rect:
@@ -315,8 +315,8 @@ TextureImporter:
         y: 25
         width: 15
         height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_24
       rect:
@@ -325,8 +325,8 @@ TextureImporter:
         y: 25
         width: 24
         height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_25
       rect:
@@ -335,8 +335,8 @@ TextureImporter:
         y: 25
         width: 27
         height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_26
       rect:
@@ -345,8 +345,8 @@ TextureImporter:
         y: 3
         width: 13
         height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Ye_Oldy_Knight_Guy_27
       rect:
@@ -355,8 +355,8 @@ TextureImporter:
         y: 3
         width: 18
         height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

@@ -90,7 +90,7 @@ public class WaveManager : MonoBehaviour {
             List<int> tried = new List<int>();
 
             while (tried.Count < EnemyPrefabs.Count) {
-                int r = Random.Range(0, EnemyPrefabs.Count - 1);
+                int r = Random.Range(0, EnemyPrefabs.Count);
                 if (currentDiff + EnemyWeights[r] <= CurrentDifficulty) {
                     enemies.Add(EnemyPrefabs[r]);
                     added = true;
