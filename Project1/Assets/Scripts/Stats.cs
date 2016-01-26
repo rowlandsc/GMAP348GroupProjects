@@ -20,21 +20,6 @@ public class Stats : MonoBehaviour
     
     public CombatSystem.AttackType[] possibleAttacks;
     
-    public Stats (float bAttackMin, float bAttackMax, float bHealth, float levelDifMod, int bXpReward, int maxAttacks, int cLevel)
-    {
-        this.bAttackMin = bAttackMin;
-        this.bAttackMax = bAttackMax;
-        this.bHealth = bHealth;
-        this.levelDifMod = levelDifMod;
-        this.bXpReward = bXpReward;
-        this.maxAttacks = maxAttacks;
-        this.cLevel = cLevel;
-    }
-
-    public Stats()
-    {
-        
-    }
 
     void Start()
     {
@@ -61,5 +46,27 @@ public class Stats : MonoBehaviour
     public bool GetIsAlive() {
         return (_cHealth > 0);
     }
+
+    public void DealDamage(int damage) {
+        //TODO
+    }
    
+    public void RestoreToFullHealth() {
+        //TODO
+    }
+
+    public int GetAttackDamage() {
+        //TODO
+        return 5;
+    }
+
+    public int GetQuickAttackDamage() {
+        //TODO
+        return 3;
+    }
+
+    public int GetSpecialAttackDamage(int turnsCharged) {
+        //TODO
+        return 5 * (turnsCharged + 1);
+    }
 }

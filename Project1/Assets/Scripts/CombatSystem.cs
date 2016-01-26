@@ -185,8 +185,8 @@ public class CombatSystem : MonoBehaviour {
             case AttackType.ATTACK:
                 switch (enemyAttack) {
                     case AttackType.ATTACK:
-                        enemyReceivedDamage = 5;
-                        playerReceivedDamage = 5;
+                        enemyReceivedDamage = Player.Instance.GetComponent<Stats>().GetAttackDamage();
+                        playerReceivedDamage = CurrentEnemy.GetComponent<Stats>().GetAttackDamage();
                         playerAttacked = true;
                         enemyAttacked = true;
                         break;
@@ -194,23 +194,23 @@ public class CombatSystem : MonoBehaviour {
                         playerAttacked = true;
                         break;
                     case AttackType.CHARGE:
-                        enemyReceivedDamage = 5;
+                        enemyReceivedDamage = Player.Instance.GetComponent<Stats>().GetAttackDamage();
                         playerAttacked = true;
                         break;
                     case AttackType.QUICKATTACK:
-                        enemyReceivedDamage = 5;
-                        playerReceivedQuickDamage = 3;
+                        enemyReceivedDamage = Player.Instance.GetComponent<Stats>().GetAttackDamage();
+                        playerReceivedQuickDamage = CurrentEnemy.GetComponent<Stats>().GetQuickAttackDamage();
                         playerAttacked = true;
                         enemyAttacked = true;
                         break;
                     case AttackType.SPECIALATTACK:
-                        enemyReceivedDamage = 5;
-                        playerReceivedDamage = 10;
+                        enemyReceivedDamage = Player.Instance.GetComponent<Stats>().GetAttackDamage();
+                        playerReceivedDamage = CurrentEnemy.GetComponent<Stats>().GetSpecialAttackDamage(GetSpecialAttackCharge(false, input));
                         playerAttacked = true;
                         enemyAttacked = true;
                         break;
                     default:
-                        enemyReceivedDamage = 5;
+                        enemyReceivedDamage = Player.Instance.GetComponent<Stats>().GetAttackDamage();
                         playerAttacked = true;
                         break;
                 }
@@ -229,7 +229,7 @@ public class CombatSystem : MonoBehaviour {
                         enemyAttacked = true;
                         break;
                     case AttackType.SPECIALATTACK:
-                        playerReceivedDamage = 10;
+                        playerReceivedDamage = CurrentEnemy.GetComponent<Stats>().GetSpecialAttackDamage(GetSpecialAttackCharge(false, input));
                         enemyAttacked = true;
                         break;
                     default:
@@ -239,7 +239,7 @@ public class CombatSystem : MonoBehaviour {
             case AttackType.CHARGE:
                 switch (enemyAttack) {
                     case AttackType.ATTACK:
-                        playerReceivedDamage = 5;
+                        playerReceivedDamage = CurrentEnemy.GetComponent<Stats>().GetAttackDamage();
                         enemyAttacked = true;
                         break;
                     case AttackType.BLOCK:
@@ -247,11 +247,11 @@ public class CombatSystem : MonoBehaviour {
                     case AttackType.CHARGE:
                         break;
                     case AttackType.QUICKATTACK:
-                        playerReceivedDamage = 3;
+                        playerReceivedDamage = CurrentEnemy.GetComponent<Stats>().GetQuickAttackDamage();
                         enemyAttacked = true;
                         break;
                     case AttackType.SPECIALATTACK:
-                        playerReceivedDamage = 10;
+                        playerReceivedDamage = CurrentEnemy.GetComponent<Stats>().GetSpecialAttackDamage(GetSpecialAttackCharge(false, input));
                         enemyAttacked = true;
                         break;
                     default:
@@ -261,8 +261,8 @@ public class CombatSystem : MonoBehaviour {
             case AttackType.QUICKATTACK:
                 switch (enemyAttack) {
                     case AttackType.ATTACK:
-                        enemyReceivedQuickDamage = 3;
-                        playerReceivedDamage = 5;
+                        enemyReceivedQuickDamage = Player.Instance.GetComponent<Stats>().GetQuickAttackDamage();
+                        playerReceivedDamage = CurrentEnemy.GetComponent<Stats>().GetAttackDamage();
                         playerAttacked = true;
                         enemyAttacked = true;
                         break;
@@ -271,57 +271,58 @@ public class CombatSystem : MonoBehaviour {
                         playerAttacked = true;
                         break;
                     case AttackType.CHARGE:
-                        enemyReceivedQuickDamage = 3;
+                        enemyReceivedQuickDamage = Player.Instance.GetComponent<Stats>().GetQuickAttackDamage();
                         playerAttacked = true;
                         break;
                     case AttackType.QUICKATTACK:
-                        enemyReceivedQuickDamage = 3;
-                        playerReceivedQuickDamage = 3;
+                        enemyReceivedQuickDamage = Player.Instance.GetComponent<Stats>().GetQuickAttackDamage();
+                        playerReceivedQuickDamage = CurrentEnemy.GetComponent<Stats>().GetQuickAttackDamage();
                         playerAttacked = true;
                         enemyAttacked = true;
                         break;
                     case AttackType.SPECIALATTACK:
-                        enemyReceivedQuickDamage = 3;
-                        playerReceivedDamage = 10;
+                        enemyReceivedQuickDamage = Player.Instance.GetComponent<Stats>().GetQuickAttackDamage();
+                        playerReceivedDamage = CurrentEnemy.GetComponent<Stats>().GetSpecialAttackDamage(GetSpecialAttackCharge(false, input));
                         playerAttacked = true;
                         enemyAttacked = true;
                         break;
                     default:
-                        enemyReceivedQuickDamage = 5;
+                        enemyReceivedQuickDamage = Player.Instance.GetComponent<Stats>().GetQuickAttackDamage();
                         playerAttacked = true;
                         break;
                 }
                 break;
             case AttackType.SPECIALATTACK:
+                int playerSpecialCharge = GetSpecialAttackCharge(true, input);
                 switch (enemyAttack) {
                     case AttackType.ATTACK:
-                        enemyReceivedDamage = 10;
-                        playerReceivedDamage = 5;
+                        enemyReceivedDamage = Player.Instance.GetComponent<Stats>().GetSpecialAttackDamage(playerSpecialCharge);
+                        playerReceivedDamage = CurrentEnemy.GetComponent<Stats>().GetAttackDamage();
                         playerAttacked = true;
                         enemyAttacked = true;
                         break;
                     case AttackType.BLOCK:
-                        enemyReceivedDamage = 10;
+                        enemyReceivedDamage = Player.Instance.GetComponent<Stats>().GetSpecialAttackDamage(playerSpecialCharge); ;
                         playerAttacked = true;
                         break;
                     case AttackType.CHARGE:
-                        enemyReceivedDamage = 10;
+                        enemyReceivedDamage = Player.Instance.GetComponent<Stats>().GetSpecialAttackDamage(playerSpecialCharge); ;
                         playerAttacked = true;
                         break;
                     case AttackType.QUICKATTACK:
-                        enemyReceivedDamage = 10;
-                        playerReceivedQuickDamage = 3;
+                        enemyReceivedDamage = Player.Instance.GetComponent<Stats>().GetSpecialAttackDamage(playerSpecialCharge); ;
+                        playerReceivedQuickDamage = CurrentEnemy.GetComponent<Stats>().GetQuickAttackDamage();
                         playerAttacked = true;
                         enemyAttacked = true;
                         break;
                     case AttackType.SPECIALATTACK:
-                        enemyReceivedDamage = 10;
-                        playerReceivedDamage = 10;
+                        enemyReceivedDamage = Player.Instance.GetComponent<Stats>().GetSpecialAttackDamage(playerSpecialCharge); ;
+                        playerReceivedDamage = CurrentEnemy.GetComponent<Stats>().GetSpecialAttackDamage(GetSpecialAttackCharge(false, input));
                         playerAttacked = true;
                         enemyAttacked = true;
                         break;
                     default:
-                        enemyReceivedDamage = 10;
+                        enemyReceivedDamage = Player.Instance.GetComponent<Stats>().GetSpecialAttackDamage(playerSpecialCharge); ;
                         playerAttacked = true;
                         break;
                 }
@@ -329,7 +330,7 @@ public class CombatSystem : MonoBehaviour {
             default:
                 switch (enemyAttack) {
                     case AttackType.ATTACK:
-                        playerReceivedDamage = 5;
+                        playerReceivedDamage = CurrentEnemy.GetComponent<Stats>().GetAttackDamage();
                         enemyAttacked = true;
                         break;
                     case AttackType.BLOCK:
@@ -337,11 +338,11 @@ public class CombatSystem : MonoBehaviour {
                     case AttackType.CHARGE:
                         break;
                     case AttackType.QUICKATTACK:
-                        playerReceivedDamage = 3;
+                        playerReceivedDamage = CurrentEnemy.GetComponent<Stats>().GetQuickAttackDamage();
                         enemyAttacked = true;
                         break;
                     case AttackType.SPECIALATTACK:
-                        playerReceivedDamage = 10;
+                        playerReceivedDamage = CurrentEnemy.GetComponent<Stats>().GetSpecialAttackDamage(GetSpecialAttackCharge(false, input));
                         enemyAttacked = true;
                         break;
                     default:
@@ -399,17 +400,28 @@ public class CombatSystem : MonoBehaviour {
         yield return new WaitForSeconds(CombatInputResultsTime);
     }
 
-    IEnumerator DamageAnimation(bool leftSide, int damage) {
-        string damageString = (damage > 0) ? damage.ToString() : "No damage";
 
-        float timer = 0;
-        while (timer < CombatInputResultsTime) {
-            timer += Time.deltaTime;
+    int GetSpecialAttackCharge(bool player, int specialAttackInput) {
+        if (player) {
+            int charge = 0;
+            for (int i=specialAttackInput; i>=0; i--) {
+                if (_playerSeries[i] == AttackType.CHARGE) charge++;
+                else break;
+            }
 
-            yield return null;
+            return charge;
+        }
+        else {
+            int charge = 0;
+            for (int i = specialAttackInput; i >= 0; i--) {
+                if (_enemySeries[i] == AttackType.CHARGE) charge++;
+                else break;
+            }
+
+            return charge;
         }
     }
-
+   
     void Stun(bool player, int inputToStun) {
         if ((player && inputToStun >= _playerSeries.Count) || (!player && inputToStun >= _enemySeries.Count)) {
             return;
