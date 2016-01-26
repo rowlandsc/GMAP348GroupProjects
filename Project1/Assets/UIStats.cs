@@ -23,7 +23,7 @@ public class UIStats : MonoBehaviour {
 	void Update ()
     {
         playerLevelText.text = "Level : " + Player.Instance.GetComponent<Stats>().cLevel;
-        playerXPText.text = "Total XP : " + Player.Instance.xpEarned;
+        playerXPText.text = "Total XP : " + Mathf.Round(Player.Instance.xpEarned);
         if (CombatSystem.Instance.CurrentEnemy) {
             enemyLevelText.enabled = true;
             enemyLevelText.text = "Level: " + CombatSystem.Instance.CurrentEnemy.GetComponent<Stats>().cLevel;

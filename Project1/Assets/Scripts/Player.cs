@@ -22,14 +22,17 @@ public class Player : MonoBehaviour {
 	void Start ()
     {      
         playerStats = Player.Instance.GetComponent<Stats>();
-        CombatSystem.OnCombatEnemyKilled += OnEnemyDeathXp;  
+        CombatSystem.OnCombatEnemyKilled += OnEnemyDeathXp;
+        WaveManager.OnWaveEnd += RestoreHealth;
          
 	}
 	
 
     public void CalcLevel()
     {
-        playerStats.cLevel = ((int) xpEarned / 100) + 1;
+        //playerStats.cLevel = ((int) xpEarned / 100) + 1;
+        playerStats.cLevel = (int)(-.000004f * Mathf.Pow(xpEarned, 2.0f) + 0.0087f * xpEarned + 1.0751f);
+
         playerStats.CalcStats();
 
     }
@@ -53,6 +56,11 @@ public class Player : MonoBehaviour {
     public void OnDestroy()
     {
         CombatSystem.OnCombatEnemyKilled -= OnEnemyDeathXp;
+    }
+
+    public void RestoreHealth()
+    {
+        playerStats.RestoreToFullHealth();
     }
 
 }

@@ -50,7 +50,7 @@ public class CombatAnimationManager : MonoBehaviour {
 
         Outline ol = go.AddComponent<Outline>();
         ol.effectColor = Color.white;
-        ol.effectDistance = new Vector2(2, 2);
+        ol.effectDistance = new Vector2(1, 1);
 
         CombatAnimation ca = go.AddComponent<CombatAnimation>();
         ca.Lifetime = lifetime;
@@ -80,7 +80,7 @@ public class CombatAnimationManager : MonoBehaviour {
 
         Outline ol = go.AddComponent<Outline>();
         ol.effectColor = Color.white;
-        ol.effectDistance = new Vector2(2, 2);
+        ol.effectDistance = new Vector2(1, 1);
 
         CombatAnimation ca = go.AddComponent<CombatAnimation>();
         ca.Lifetime = lifetime;
