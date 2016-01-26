@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Stats : MonoBehaviour
 {
-    
+
     public float bAttackMin = 1.0f; //base
     public float bAttackMax = 2.0f; //base
     public float bHealth = 10.0f; //base
@@ -15,58 +15,73 @@ public class Stats : MonoBehaviour
 
     private float _cHealth; //Current
     private float _cAttack; //Current
-    private float _cXp; //Current
+    private float _cXpReward; //Current
+    private float _mHealth; //Max Health
 
-    
+
     public CombatSystem.AttackType[] possibleAttacks;
-    
+
 
     void Start()
     {
         CalcStats();
-                
+        _cHealth = _mHealth;
+
     }
 
     public void CalcStats()
     {
         //All linear scaling based on dif modifier. Change to logrithmic scaling at some point possibly
-        _cHealth = bHealth + (cLevel * levelDifMod * bHealth);
+        _mHealth = bHealth + (cLevel * levelDifMod * bHealth);
+
         _cAttack = bAttackMin + (cLevel * levelDifMod * (Random.Range(bAttackMin * 100, bAttackMax * 100) * .01f));
-        _cXp = bXpReward + (cLevel * levelDifMod * (Random.Range((bXpReward - 1) * 100, (bXpReward + 1) * 100) * .01f));
+        _cXpReward = bXpReward + (cLevel * levelDifMod * (Random.Range((bXpReward - 1) * 100, (bXpReward + 1) * 100) * .01f));
     }
 
-    public float GetHealth() {
+    public float GetXpReward()
+    {
+        _cXpReward = bXpReward + (cLevel * levelDifMod * (Random.Range((bXpReward - 1) * 100, (bXpReward + 1) * 100) * .01f));
+        return _cXpReward;
+    }
+
+    public float GetHealth()
+    {
         return _cHealth;
     }
 
-    public float GetAttack() {
+    public float GetAttack()
+    {
         return _cAttack;
     }
 
-    public bool GetIsAlive() {
+    public bool GetIsAlive()
+    {
         return (_cHealth > 0);
     }
 
-    public void DealDamage(int damage) {
-        //TODO
-    }
-   
-    public void RestoreToFullHealth() {
-        //TODO
+    public void DealDamage(int damage)
+    {
+        _cHealth = _cHealth - damage;
     }
 
-    public int GetAttackDamage() {
-        //TODO
-        return 5;
+    public void RestoreToFullHealth()
+    {
+        _cHealth = _mHealth;
     }
 
-    public int GetQuickAttackDamage() {
-        //TODO
-        return 3;
+    public float GetAttackDamage()
+    {
+        
+        return Mathf.Round(_cAttack);
     }
 
-    public int GetSpecialAttackDamage(int turnsCharged) {
-        //TODO
-        return 5 * (turnsCharged + 1);
+    public float GetQuickAttackDamage()
+    {
+        return Mathf.Round(_cAttack * .75f) ;
+    }
+
+    public float GetSpecialAttackDamage(int turnsCharged)
+    {   
+        return Mathf.Round(_cAttack * (turnsCharged + 1));
     }
 }

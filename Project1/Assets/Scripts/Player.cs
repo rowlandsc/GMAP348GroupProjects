@@ -4,10 +4,10 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     public static Player Instance = null;
-    //Stats playerStats = Player.Instance.GetComponent<Stats>();
+    Stats playerStats;
 
     public float xpEarned = 0;
-    public GameObject currentEnemy;
+   
     
     void Awake() {
         if (Instance == null) {
@@ -20,8 +20,8 @@ public class Player : MonoBehaviour {
 
 	void Start ()
     {
-        
-        
+            
+        playerStats = Player.Instance.GetComponent<Stats>();
 	    
 	}
 	
@@ -30,32 +30,13 @@ public class Player : MonoBehaviour {
         
     }
 
-    //public void calcLevel()
-    //{
-    //    if(xpEarned >= 100)
-    //    {
-            
-    //        playerStats.cLevel = 2;
-    //    }
-    //    else if (xpEarned >= 200)
-    //    {
-    //        playerStats.cLevel = 3;
-    //    }
-    //    else if (xpEarned >= 300)
-    //    {
-    //        playerStats.cLevel = 4;
-    //    }
-    //    else if (xpEarned >= 400)
-    //    {
-    //        playerStats.cLevel = 5;
-    //    }
-    //    else
-    //    {
-    //        playerStats.cLevel = 1;
-    //    }
+    public void calcLevel()
+    {
+        playerStats.cLevel = (int)xpEarned / 100;
+        
 
 
-    //}
+    }
 
-    
+
 }
