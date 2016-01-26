@@ -18,14 +18,11 @@ public class UIStats : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-<<<<<<< HEAD
-        playerLevelText.text = "Level : " + Player.Instance.GetComponent<Stats>().cLevel;
-        playerXPText.text = "Total XP : " + Mathf.Round(Player.Instance.xpEarned);
-=======
+
         playerLevelText.text = "Level: " + Player.Instance.GetComponent<Stats>().cLevel;
         playerXPText.text = "Total XP: " + Player.Instance.xpEarned;
         playerHealth.text = "Health: " + Player.Instance.GetComponent<Stats>().GetHealth();
->>>>>>> origin/master
+
         if (CombatSystem.Instance.CurrentEnemy) {
             enemyLevelText.enabled = true;
             enemyHealth.enabled = true;
