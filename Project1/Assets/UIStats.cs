@@ -6,12 +6,19 @@ public class UIStats : MonoBehaviour {
     public Text playerLevelText;
     public Text playerXPText;
     public Text enemyLevelText;
+    public Slider playerHealth;
+    public Slider enemyHealth;
 	// Use this for initialization
 	void Start ()
     {
 	
 	}
-	
+    
+    void onGUI()
+    {
+
+    }
+
 	// Update is called once per frame
 	void Update ()
     {
