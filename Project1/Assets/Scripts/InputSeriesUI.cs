@@ -16,6 +16,9 @@ public class InputSeriesUI : MonoBehaviour {
         InputManager.OnEndInputSeriesWindow += OnInputWindowEnd;
         InputManager.OnEndInputSeries += OnInputSeriesEnd;
 
+        CombatSystem.OnCombatEnemyKilled += CombatOver;
+        CombatSystem.OnCombatPlayerKilled += CombatOver;
+
         Timeline.SetActive(false);
 	}
 	
@@ -30,15 +33,7 @@ public class InputSeriesUI : MonoBehaviour {
     void OnInputSeriesStart() {
         Timeline.SetActive(true);
 
-        for (int i = 0; i < _windowMarkers.Count; i++) {
-            Destroy(_windowMarkers[i].gameObject);
-        }
-        for (int i=0; i<_windowText.Count; i++) {
-            Destroy(_windowText[i].gameObject);
-        }
-        _windowMarkers.Clear();
-        _windowText.Clear();
-        if (_progressBar) Destroy(_progressBar.gameObject);
+        DestroyEverything();
 
         for (int i=0; i<=InputManager.Instance.CurrentInputStringLength; i++) {
             GameObject newWindowMarker = new GameObject("WindowMarker " + i);
@@ -69,8 +64,8 @@ public class InputSeriesUI : MonoBehaviour {
 
             newText.rectTransform.anchorMin = new Vector2(_windowMarkers[i].rectTransform.anchorMax.x, 1.0f);
             newText.rectTransform.anchorMax = new Vector2(_windowMarkers[i + 1].rectTransform.anchorMin.x, 2.0f);
-            newText.rectTransform.offsetMin = new Vector2(0, -39);
-            newText.rectTransform.offsetMax = new Vector2(0, -39);
+            newText.rectTransform.offsetMin = new Vector2(0, -29);
+            newText.rectTransform.offsetMax = new Vector2(0, -29);
             newText.text = "";
             //newText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
             newText.resizeTextForBestFit = true;
@@ -104,10 +99,32 @@ public class InputSeriesUI : MonoBehaviour {
         _windowText[i].text = text;
     }
 
+    void CombatOver() {
+        Timeline.SetActive(false);
+        DestroyEverything();
+    }
+
+    public void DestroyEverything() {
+        for (int i = 0; i < _windowMarkers.Count; i++) {
+            Destroy(_windowMarkers[i].gameObject);
+        }
+        for (int i = 0; i < _windowText.Count; i++) {
+            Destroy(_windowText[i].gameObject);
+        }
+        _windowMarkers.Clear();
+        _windowText.Clear();
+        if (_progressBar) Destroy(_progressBar.gameObject);
+    }
+
     void OnDestroy() {
+        DestroyEverything();
+
         InputManager.OnStartInputSeries -= OnInputSeriesStart;
         InputManager.OnStartInputSeriesWindow -= OnInputWindowStart;
         InputManager.OnEndInputSeriesWindow -= OnInputWindowEnd;
         InputManager.OnEndInputSeries -= OnInputSeriesEnd;
+
+        CombatSystem.OnCombatEnemyKilled -= CombatOver;
+        CombatSystem.OnCombatPlayerKilled -= CombatOver;
     }
 }

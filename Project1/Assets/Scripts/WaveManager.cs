@@ -19,6 +19,7 @@ public class WaveManager : MonoBehaviour {
     public float EnemyXPositionIncrease = 50;
     public float EnemyXPositionVariance = 25;
     public float EnemyYPosition = -3.5f;
+    public float WaveTextLifetime = 1.0f;
 
     public List<GameObject> EnemyPrefabs = new List<GameObject>();
     public List<int> EnemyWeights = new List<int>();
@@ -67,6 +68,7 @@ public class WaveManager : MonoBehaviour {
 
     void WaveStart() {
         CurrentWave++;
+        CombatAnimationManager.Instance.CreateWaveAnimationObject(WaveTextLifetime, CurrentWave);
         if (CurrentWave == 1) CurrentDifficulty = WaveDifficultyStart;
         else CurrentDifficulty += WaveDifficultyIncrease;
         GenerateWave();

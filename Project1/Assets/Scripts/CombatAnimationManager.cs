@@ -59,6 +59,36 @@ public class CombatAnimationManager : MonoBehaviour {
         return go;
     }
 
+    public GameObject CreateWaveAnimationObject(float lifetime, int wave) {
+        GameObject go = new GameObject("Wave Animation (" + wave + ")");
+
+        go.AddComponent<RectTransform>();
+        go.transform.SetParent(CanvasToUse.transform);
+
+        go.GetComponent<RectTransform>().offsetMin = Vector2.zero;
+        go.GetComponent<RectTransform>().offsetMax = Vector2.zero;
+        go.GetComponent<RectTransform>().localScale = Vector3.one;
+        go.GetComponent<RectTransform>().anchorMin = new Vector2(0.2f, 0.4f);
+        go.GetComponent<RectTransform>().anchorMax = new Vector2(0.8f, 0.6f);
+
+        Text t = go.AddComponent<Text>();
+        t.text = "Wave " + wave;
+        t.color = Color.red;
+        t.font = FontToUse;
+        t.fontSize = 30;
+        t.alignment = TextAnchor.MiddleCenter;
+
+        Outline ol = go.AddComponent<Outline>();
+        ol.effectColor = Color.white;
+        ol.effectDistance = new Vector2(2, 2);
+
+        CombatAnimation ca = go.AddComponent<CombatAnimation>();
+        ca.Lifetime = lifetime;
+        ca.RiseOverTime = true;
+
+        return go;
+    }
+
 
 
 }

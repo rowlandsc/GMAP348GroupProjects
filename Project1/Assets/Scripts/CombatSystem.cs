@@ -27,6 +27,7 @@ public class CombatSystem : MonoBehaviour {
     public InputSeriesUI InputUI = null;
     public bool IsInCombat = false;
     public Enemy CurrentEnemy = null;
+    public int CurrentAction = 0;
     public Text PlayerCombatText;
     public Text EnemyCombatText;
 
@@ -163,7 +164,7 @@ public class CombatSystem : MonoBehaviour {
         }
 
         int input = 0;
-        while (input < _playerSeries.Count) {
+        while (input < _playerSeries.Count && Player.Instance.GetComponent<Stats>().GetIsAlive() && CurrentEnemy.GetComponent<Stats>().GetIsAlive()) {
             OnCombatInputStart(input);
             yield return StartCoroutine(CombatInputFlow(input));
             OnCombatInputEnd(input);
@@ -175,6 +176,8 @@ public class CombatSystem : MonoBehaviour {
 
     IEnumerator CombatInputFlow(int input) {
         yield return new WaitForSeconds(CombatInputWaitTime);
+
+        CurrentAction = input;
 
         AttackType playerAttack = _playerSeries[input];
         AttackType enemyAttack = _enemySeries[input];
