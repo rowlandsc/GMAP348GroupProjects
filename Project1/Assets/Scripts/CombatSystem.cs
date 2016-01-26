@@ -30,6 +30,9 @@ public class CombatSystem : MonoBehaviour {
     public Text PlayerCombatText;
     public Text EnemyCombatText;
 
+    public float CombatInputWaitTime = 0.5f;
+    public float CombatInputResultsTime = 1.0f;
+
     List<AttackType> _playerSeries = new List<AttackType>();
     List<AttackType> _enemySeries = new List<AttackType>();
 
@@ -97,7 +100,8 @@ public class CombatSystem : MonoBehaviour {
         EnemyCombatText.text = GetAttackName(_enemySeries[inputNumber]);
     }
     void CombatInputEnd(int inputNumber) {
-
+        PlayerCombatText.text = "";
+        EnemyCombatText.text = "";
     }
     void CombatPlayerKilled() {
 
@@ -163,7 +167,264 @@ public class CombatSystem : MonoBehaviour {
     }
 
     IEnumerator CombatInputFlow(int input) {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(CombatInputWaitTime);
+
+        AttackType playerAttack = _playerSeries[input];
+        AttackType enemyAttack = _enemySeries[input];
+
+        float playerReceivedQuickDamage = 0;
+        float enemyReceivedQuickDamage = 0;
+        float playerReceivedDamage = 0;
+        float enemyReceivedDamage = 0;
+        bool playerReceivedStun = false;
+        bool enemyReceivedStun = false;
+        bool playerAttacked = false;
+        bool enemyAttacked = false;
+
+        switch (playerAttack) {
+            case AttackType.ATTACK:
+                switch (enemyAttack) {
+                    case AttackType.ATTACK:
+                        enemyReceivedDamage = 5;
+                        playerReceivedDamage = 5;
+                        playerAttacked = true;
+                        enemyAttacked = true;
+                        break;
+                    case AttackType.BLOCK:
+                        playerAttacked = true;
+                        break;
+                    case AttackType.CHARGE:
+                        enemyReceivedDamage = 5;
+                        playerAttacked = true;
+                        break;
+                    case AttackType.QUICKATTACK:
+                        enemyReceivedDamage = 5;
+                        playerReceivedQuickDamage = 3;
+                        playerAttacked = true;
+                        enemyAttacked = true;
+                        break;
+                    case AttackType.SPECIALATTACK:
+                        enemyReceivedDamage = 5;
+                        playerReceivedDamage = 10;
+                        playerAttacked = true;
+                        enemyAttacked = true;
+                        break;
+                    default:
+                        enemyReceivedDamage = 5;
+                        playerAttacked = true;
+                        break;
+                }
+                break;
+            case AttackType.BLOCK:
+                switch (enemyAttack) {
+                    case AttackType.ATTACK:
+                        enemyAttacked = true;
+                        break;
+                    case AttackType.BLOCK:
+                        break;
+                    case AttackType.CHARGE:
+                        break;
+                    case AttackType.QUICKATTACK:
+                        enemyReceivedStun = true;
+                        enemyAttacked = true;
+                        break;
+                    case AttackType.SPECIALATTACK:
+                        playerReceivedDamage = 10;
+                        enemyAttacked = true;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case AttackType.CHARGE:
+                switch (enemyAttack) {
+                    case AttackType.ATTACK:
+                        playerReceivedDamage = 5;
+                        enemyAttacked = true;
+                        break;
+                    case AttackType.BLOCK:
+                        break;
+                    case AttackType.CHARGE:
+                        break;
+                    case AttackType.QUICKATTACK:
+                        playerReceivedDamage = 3;
+                        enemyAttacked = true;
+                        break;
+                    case AttackType.SPECIALATTACK:
+                        playerReceivedDamage = 10;
+                        enemyAttacked = true;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case AttackType.QUICKATTACK:
+                switch (enemyAttack) {
+                    case AttackType.ATTACK:
+                        enemyReceivedQuickDamage = 3;
+                        playerReceivedDamage = 5;
+                        playerAttacked = true;
+                        enemyAttacked = true;
+                        break;
+                    case AttackType.BLOCK:
+                        playerReceivedStun = true;
+                        playerAttacked = true;
+                        break;
+                    case AttackType.CHARGE:
+                        enemyReceivedQuickDamage = 3;
+                        playerAttacked = true;
+                        break;
+                    case AttackType.QUICKATTACK:
+                        enemyReceivedQuickDamage = 3;
+                        playerReceivedQuickDamage = 3;
+                        playerAttacked = true;
+                        enemyAttacked = true;
+                        break;
+                    case AttackType.SPECIALATTACK:
+                        enemyReceivedQuickDamage = 3;
+                        playerReceivedDamage = 10;
+                        playerAttacked = true;
+                        enemyAttacked = true;
+                        break;
+                    default:
+                        enemyReceivedQuickDamage = 5;
+                        playerAttacked = true;
+                        break;
+                }
+                break;
+            case AttackType.SPECIALATTACK:
+                switch (enemyAttack) {
+                    case AttackType.ATTACK:
+                        enemyReceivedDamage = 10;
+                        playerReceivedDamage = 5;
+                        playerAttacked = true;
+                        enemyAttacked = true;
+                        break;
+                    case AttackType.BLOCK:
+                        enemyReceivedDamage = 10;
+                        playerAttacked = true;
+                        break;
+                    case AttackType.CHARGE:
+                        enemyReceivedDamage = 10;
+                        playerAttacked = true;
+                        break;
+                    case AttackType.QUICKATTACK:
+                        enemyReceivedDamage = 10;
+                        playerReceivedQuickDamage = 3;
+                        playerAttacked = true;
+                        enemyAttacked = true;
+                        break;
+                    case AttackType.SPECIALATTACK:
+                        enemyReceivedDamage = 10;
+                        playerReceivedDamage = 10;
+                        playerAttacked = true;
+                        enemyAttacked = true;
+                        break;
+                    default:
+                        enemyReceivedDamage = 10;
+                        playerAttacked = true;
+                        break;
+                }
+                break;
+            default:
+                switch (enemyAttack) {
+                    case AttackType.ATTACK:
+                        playerReceivedDamage = 5;
+                        enemyAttacked = true;
+                        break;
+                    case AttackType.BLOCK:
+                        break;
+                    case AttackType.CHARGE:
+                        break;
+                    case AttackType.QUICKATTACK:
+                        playerReceivedDamage = 3;
+                        enemyAttacked = true;
+                        break;
+                    case AttackType.SPECIALATTACK:
+                        playerReceivedDamage = 10;
+                        enemyAttacked = true;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+        }
+
+        bool wait = false;
+        if (playerAttack == AttackType.QUICKATTACK) {
+            CombatAnimationManager.Instance.CreateCombatAnimationObject(CombatInputResultsTime, enemyReceivedQuickDamage.ToString(), false, Color.red, true);
+            // Deal quick damage to enemy
+            wait = true;
+        }
+        if (enemyAttack == AttackType.QUICKATTACK) {
+            CombatAnimationManager.Instance.CreateCombatAnimationObject(CombatInputResultsTime, playerReceivedQuickDamage.ToString(), false, Color.red, true);
+            // Deal quick damage to player
+            wait = true;
+        }
+
+        if (!Player.Instance.GetComponent<Stats>().GetIsAlive() || !CurrentEnemy.GetComponent<Stats>().GetIsAlive()) {
+            yield return new WaitForSeconds(CombatInputResultsTime);
+            yield break;
+        }
+
+        if (wait && ((playerAttack == AttackType.QUICKATTACK && enemyAttacked && enemyAttack != AttackType.QUICKATTACK) || (playerAttack != AttackType.QUICKATTACK && playerAttacked && enemyAttack == AttackType.QUICKATTACK))) {
+            yield return new WaitForSeconds(CombatInputResultsTime / 2);
+        }
+
+        wait = false;
+        if (playerAttacked && playerAttack != AttackType.QUICKATTACK) {
+            CombatAnimationManager.Instance.CreateCombatAnimationObject(CombatInputResultsTime, enemyReceivedDamage.ToString(), false, Color.red, true);
+            // Deal damage to enemy
+            wait = true;
+        }
+        if (enemyAttacked && enemyAttack != AttackType.QUICKATTACK) {
+            CombatAnimationManager.Instance.CreateCombatAnimationObject(CombatInputResultsTime, playerReceivedDamage.ToString(), true, Color.red, true);
+            // Deal damage to player
+            wait = true;
+        }
+
+        if (wait && (playerReceivedStun || enemyReceivedStun)) {
+            yield return new WaitForSeconds(CombatInputResultsTime / 2);
+        }
+
+        if (playerReceivedStun) {
+            CombatAnimationManager.Instance.CreateCombatAnimationObject(CombatInputResultsTime, "Stun", true, Color.red, true);
+            Stun(true, input + 1);            
+        }
+        if (enemyReceivedStun) {
+            CombatAnimationManager.Instance.CreateCombatAnimationObject(CombatInputResultsTime, "Stun", false, Color.red, true);
+            // Stun enemy
+        }
+
+        yield return new WaitForSeconds(CombatInputResultsTime);
+    }
+
+    IEnumerator DamageAnimation(bool leftSide, int damage) {
+        string damageString = (damage > 0) ? damage.ToString() : "No damage";
+
+        float timer = 0;
+        while (timer < CombatInputResultsTime) {
+            timer += Time.deltaTime;
+
+            yield return null;
+        }
+    }
+
+    void Stun(bool player, int inputToStun) {
+        if ((player && inputToStun >= _playerSeries.Count) || (!player && inputToStun >= _enemySeries.Count)) {
+            return;
+        }
+
+        if (player) {
+            _playerSeries[inputToStun] = AttackType.NONE;
+
+            string text = GetAttackName(_playerSeries[inputToStun]);
+
+            InputUI.SetWindowText(inputToStun, text);
+        }
+        else {
+            _enemySeries[inputToStun] = AttackType.NONE;
+        }
     }
 
     AttackType GetAttackType(InputManager.InputType type) {

@@ -17,6 +17,12 @@ public class UIStats : MonoBehaviour {
     {
         playerLevelText.text = "Level : " + Player.Instance.GetComponent<Stats>().cLevel;
         playerXPText.text = "Total XP : " + Player.Instance.xpEarned;
-        enemyLevelText.text = "Level : " + Player.Instance.currentEnemy.GetComponent<Stats>().cLevel;
+        if (CombatSystem.Instance.CurrentEnemy) {
+            enemyLevelText.enabled = true;
+            enemyLevelText.text = "Level : " + CombatSystem.Instance.CurrentEnemy.GetComponent<Stats>().cLevel;
+        }
+        else {
+            enemyLevelText.enabled = false;
+        }
 	}
 }

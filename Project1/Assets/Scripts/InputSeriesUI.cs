@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class InputSeriesUI : MonoBehaviour {
 
     public GameObject Timeline = null;
+    public Font ActionTextFont;
     List<Image> _windowMarkers = new List<Image>();
     List<Text> _windowText = new List<Text>();
     Image _progressBar = null;
@@ -53,9 +54,14 @@ public class InputSeriesUI : MonoBehaviour {
 
             _windowMarkers.Add(newImage);
         }
-        _windowMarkers[0].color = Color.black;
+        _windowMarkers[0].color = Color.black;   
 
-        for (int i=0; i<InputManager.Instance.CurrentInputStringLength; i++) {
+        GameObject progressBarGO = new GameObject("Progress Bar");
+        progressBarGO.transform.SetParent(Timeline.transform);
+        progressBarGO.transform.localScale = Vector3.one;
+        _progressBar = progressBarGO.AddComponent<Image>();
+
+        for (int i = 0; i < InputManager.Instance.CurrentInputStringLength; i++) {
             GameObject newWindowText = new GameObject("WindowText " + i);
             newWindowText.transform.SetParent(Timeline.transform);
             newWindowText.transform.localScale = Vector3.one;
@@ -63,23 +69,20 @@ public class InputSeriesUI : MonoBehaviour {
 
             newText.rectTransform.anchorMin = new Vector2(_windowMarkers[i].rectTransform.anchorMax.x, 1.0f);
             newText.rectTransform.anchorMax = new Vector2(_windowMarkers[i + 1].rectTransform.anchorMin.x, 2.0f);
-            newText.rectTransform.offsetMin = Vector2.zero;
-            newText.rectTransform.offsetMax = Vector2.zero;
+            newText.rectTransform.offsetMin = new Vector2(0, -39);
+            newText.rectTransform.offsetMax = new Vector2(0, -39);
             newText.text = "";
-            newText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
+            //newText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
             newText.resizeTextForBestFit = true;
             newText.color = Color.black;
-            
+            newText.font = ActionTextFont;
+            newText.alignment = TextAnchor.MiddleCenter;
+
             newText.resizeTextMinSize = 4;
             newText.resizeTextMaxSize = 20;
 
             _windowText.Add(newText);
         }
-
-        GameObject progressBarGO = new GameObject("Progress Bar");
-        progressBarGO.transform.SetParent(Timeline.transform);
-        progressBarGO.transform.localScale = Vector3.one;
-        _progressBar = progressBarGO.AddComponent<Image>();
 
         _progressBar.rectTransform.anchorMin = new Vector2(0, .1f);
         _progressBar.rectTransform.anchorMax = new Vector2(0, .9f);
