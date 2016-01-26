@@ -114,7 +114,7 @@ public class CombatSystem : MonoBehaviour {
         StartCoroutine(PlayerDeath());
     }
     void CombatEnemyKilled() {
-
+        StartCoroutine(EndCombat());
     }
 
     public void StartCombat(Enemy enemy) {
@@ -478,6 +478,25 @@ public class CombatSystem : MonoBehaviour {
             default:
                 return "None";
         }
+    }
+
+    IEnumerator EndCombat() {
+        GameObject enemy = CurrentEnemy.gameObject;
+
+        yield return new WaitForEndOfFrame();
+        CurrentEnemy = null;
+        IsInCombat = false;
+
+        enemy.GetComponent<Enemy>().Kill();
+        SpriteRenderer sr = enemy.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+        float _timer = 0;
+        while (_timer < PlayerDeathFadeRedTime) {
+            _timer += Time.deltaTime;
+            sr.color = new Color(1, sr.color.g - Time.deltaTime / PlayerDeathFadeRedTime, sr.color.b - Time.deltaTime / PlayerDeathFadeRedTime);
+            yield return null;
+        }
+
+        Destroy(enemy);
     }
 
     IEnumerator PlayerDeath() {

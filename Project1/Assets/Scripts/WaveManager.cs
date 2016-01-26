@@ -45,6 +45,11 @@ public class WaveManager : MonoBehaviour {
 	
 	void Update () {
        
+        if (CurrentEnemies.Count == 0) {
+            OnWaveEnd();
+            OnWaveStart();
+        }
+
         if (!CombatSystem.Instance.IsInCombat) {
             Enemy[] enemiesInGame = GameObject.FindObjectsOfType<Enemy>();
             foreach (Enemy e in enemiesInGame) {

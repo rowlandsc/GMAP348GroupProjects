@@ -17,6 +17,6 @@ public class Enemy : MonoBehaviour {
 
     public void Kill() {
         WaveManager.Instance.CurrentEnemies.Remove(gameObject);
-        Destroy(gameObject);
+        Destroy(this);
     }
 }
