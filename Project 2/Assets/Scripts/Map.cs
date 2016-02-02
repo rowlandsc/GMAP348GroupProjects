@@ -4,6 +4,16 @@ using UnityEngine.UI;
 
 public class Map : MonoBehaviour {
 
+    public static Map Instance = null;
+    void Awake() {
+        if (!Instance) {
+            Instance = this;
+        }
+        else {
+            Destroy(this);
+        }
+    }
+
     public List<List<MapTile>> TileMap;
     public Canvas MapCanvas;
     public float TileWidth = 64;
