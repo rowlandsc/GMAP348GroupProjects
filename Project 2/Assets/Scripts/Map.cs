@@ -27,7 +27,9 @@ public class Map : MonoBehaviour {
     public Color ExploredColor;
     public Color GoalColor;
 
-    public void Initialize(int width, int height) {
+    public List<MapTile> PlayerStartTiles;
+
+    public void Initialize(int width, int height, float percentBombs, int NumberOfPlayers) {
         TileMap = new List<List<MapTile>>();
         for (int i=0; i< width; i++) {
             TileMap.Add(new List<MapTile>());
@@ -46,17 +48,32 @@ public class Map : MonoBehaviour {
                 newTile.X = i;
                 newTile.Y = j;
                 newTile.ParentMap = this;
+
+                if (Random.Range(0.0f, 1.0f) < percentBombs) {
+                    newTile.HasBomb = true;
+                }
             }
         }
 
-        for (int i=0; i<=width; i++) {
-            for (int j = 0; j <= height; j++) {
-                
-            }
+        PlayerStartTiles = new List<MapTile>();
+        int middle = height / 2;
+        for (int i = -1 * NumberOfPlayers / 2; i < NumberOfPlayers / 2; i++) {
+            TileMap[0][middle + i].HasBomb = false;
+            TileMap[0][middle + i].Explore();
+            TileMap[width - 1][middle + i].HasBomb = false;
+            TileMap[width - 1][middle + i].IsGoal = true;
+
+            PlayerStartTiles.Add(TileMap[0][middle + i]);
         }
+
+
     }
 
     public MapTile GetTile(int x, int y) {
+        if (x < 0 || x >= TileMap.Count) return null;
+        if (y < 0 || y >= TileMap[0].Count) return null;
         return TileMap[x][y];
     }
+
+
 }
