@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public string facing = "up";
     public int xLoc;
     public int yLoc;
+    bool isValid = true;
     MapTile tile;
 	// Use this for initialization
 	void Start ()
@@ -46,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("p1");
             if (Input.GetKeyDown(KeyCode.W) && hold.transform == cPosition)
             {
-                if (facing == "up")
+                if (facing == "up" && yLoc < Map.Instance.TileMap[0].Count-1)
                 {
                     cPosition.position = new Vector3(cPosition.position.x, cPosition.position.y + blockSize, cPosition.position.z);
                     yLoc += 1;
@@ -61,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.A))
             {
-                if (facing == "left")
+                if (facing == "left" && xLoc > 0)
                 {
                     cPosition.position = new Vector3(cPosition.position.x - blockSize, cPosition.position.y, cPosition.position.z);
                     xLoc -= 1;
@@ -75,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
-                if (facing == "down")
+                if (facing == "down" && yLoc >0)
                 {
                     cPosition.position = new Vector3(cPosition.position.x, cPosition.position.y - blockSize, cPosition.position.z);
                     yLoc -= 1;
@@ -89,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                if (facing == "right")
+                if (facing == "right" && xLoc < Map.Instance.TileMap.Count - 1)
                 {
                     cPosition.position = new Vector3(cPosition.position.x + blockSize, cPosition.position.y, cPosition.position.z);
                     xLoc += 1;
@@ -108,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("p2");
             if (Input.GetKeyDown(KeyCode.UpArrow) && hold.transform == cPosition)
             {
-                if (facing == "up")
+                if (facing == "up" && yLoc < Map.Instance.TileMap[0].Count - 1)
                 {
                     cPosition.position = new Vector3(cPosition.position.x, cPosition.position.y + blockSize, cPosition.position.z);
                     yLoc += 1;
@@ -123,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                if (facing == "left")
+                if (facing == "left" && xLoc > 0)
                 {
                     cPosition.position = new Vector3(cPosition.position.x - blockSize, cPosition.position.y, cPosition.position.z);
                     xLoc -= 1;
@@ -137,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                if (facing == "down")
+                if (facing == "down" && yLoc >0)
                 {
                     cPosition.position = new Vector3(cPosition.position.x, cPosition.position.y - blockSize, cPosition.position.z);
                     yLoc -= 1;
@@ -151,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                if (facing == "right")
+                if (facing == "right" && xLoc < Map.Instance.TileMap.Count - 1)
                 {
                     cPosition.position = new Vector3(cPosition.position.x + blockSize, cPosition.position.y, cPosition.position.z);
                     xLoc += 1;
