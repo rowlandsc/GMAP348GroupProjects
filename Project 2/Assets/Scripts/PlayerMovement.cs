@@ -9,19 +9,26 @@ public class PlayerMovement : MonoBehaviour
     Transform hold;
     public int blockSize = 1;
     public string facing = "up";
+    public int xLoc;
+    public int yLoc;
+    MapTile tile;
 	// Use this for initialization
 	void Start ()
     {
 	    if (gameObject.tag == "Player1")
         {
             player = "p1";
+            tile = Map.Instance.PlayerStartTiles[1];
+            xLoc = tile.X;
+            yLoc = tile.Y;
         }
         else
         {
             player = "p2";
+            tile = Map.Instance.PlayerStartTiles[0];
+            xLoc = tile.X;
+            yLoc = tile.Y;
         }
-
-        
         cPosition = gameObject.transform;
         hold = transform;
 	}
@@ -42,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
                 if (facing == "up")
                 {
                     cPosition.position = new Vector3(cPosition.position.x, cPosition.position.y + blockSize, cPosition.position.z);
+                    yLoc += 1;
+                    Map.Instance.GetTile(xLoc, yLoc).Explore();
                 }
                 else
                 {
@@ -55,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
                 if (facing == "left")
                 {
                     cPosition.position = new Vector3(cPosition.position.x - blockSize, cPosition.position.y, cPosition.position.z);
+                    xLoc -= 1;
+                    Map.Instance.GetTile(xLoc, yLoc).Explore();
                 }
                 else
                 {
@@ -67,6 +78,8 @@ public class PlayerMovement : MonoBehaviour
                 if (facing == "down")
                 {
                     cPosition.position = new Vector3(cPosition.position.x, cPosition.position.y - blockSize, cPosition.position.z);
+                    yLoc -= 1;
+                    Map.Instance.GetTile(xLoc, yLoc).Explore();
                 }
                 else
                 {
@@ -79,6 +92,8 @@ public class PlayerMovement : MonoBehaviour
                 if (facing == "right")
                 {
                     cPosition.position = new Vector3(cPosition.position.x + blockSize, cPosition.position.y, cPosition.position.z);
+                    xLoc += 1;
+                    Map.Instance.GetTile(xLoc, yLoc).Explore();
                 }
                 else
                 {
@@ -90,12 +105,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (player == "p2")
         {
-            Debug.Log("p1");
+            Debug.Log("p2");
             if (Input.GetKeyDown(KeyCode.UpArrow) && hold.transform == cPosition)
             {
                 if (facing == "up")
                 {
                     cPosition.position = new Vector3(cPosition.position.x, cPosition.position.y + blockSize, cPosition.position.z);
+                    yLoc += 1;
+                    Map.Instance.GetTile(xLoc, yLoc).Explore();
                 }
                 else
                 {
@@ -109,6 +126,8 @@ public class PlayerMovement : MonoBehaviour
                 if (facing == "left")
                 {
                     cPosition.position = new Vector3(cPosition.position.x - blockSize, cPosition.position.y, cPosition.position.z);
+                    xLoc -= 1;
+                    Map.Instance.GetTile(xLoc, yLoc).Explore();
                 }
                 else
                 {
@@ -121,6 +140,8 @@ public class PlayerMovement : MonoBehaviour
                 if (facing == "down")
                 {
                     cPosition.position = new Vector3(cPosition.position.x, cPosition.position.y - blockSize, cPosition.position.z);
+                    yLoc -= 1;
+                    Map.Instance.GetTile(xLoc, yLoc).Explore();
                 }
                 else
                 {
@@ -133,6 +154,8 @@ public class PlayerMovement : MonoBehaviour
                 if (facing == "right")
                 {
                     cPosition.position = new Vector3(cPosition.position.x + blockSize, cPosition.position.y, cPosition.position.z);
+                    xLoc += 1;
+                    Map.Instance.GetTile(xLoc, yLoc).Explore();
                 }
                 else
                 {
