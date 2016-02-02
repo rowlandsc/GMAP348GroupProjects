@@ -10,6 +10,13 @@ public class Map : MonoBehaviour {
     public float TileHeight = 64;
     public Sprite TileSprite;
 
+    public Color BoundaryColor;
+    public Color NotVisibleColor;
+    public Color NotExploredColor;
+    public Color NextToBombColor;
+    public Color ExploredColor;
+    public Color GoalColor;
+
     public void Initialize(int width, int height) {
         TileMap = new List<List<MapTile>>();
         for (int i=0; i< width; i++) {
