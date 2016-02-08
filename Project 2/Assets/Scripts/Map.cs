@@ -19,6 +19,8 @@ public class Map : MonoBehaviour {
     public float TileWidth = 64;
     public float TileHeight = 64;
     public Sprite TileSprite;
+    public Sprite P1MarkerSprite;
+    public Sprite P2MarkerSprite;
 
     public Color BoundaryColor;
     public Color NotVisibleColor;
@@ -41,13 +43,23 @@ public class Map : MonoBehaviour {
                 SpriteRenderer sprite = newMapSquare.AddComponent<SpriteRenderer>();
                 sprite.color = Color.white;
                 sprite.sprite = TileSprite;
-                
+
+                GameObject newMapSquareMarker = new GameObject("Marker");
+                newMapSquareMarker.transform.SetParent(newMapSquare.transform);
+                newMapSquareMarker.transform.localPosition = new Vector3(0, 0, 0);
+                newMapSquareMarker.transform.localScale = new Vector3((TileWidth / P1MarkerSprite.bounds.size.x) * (1 / newMapSquare.transform.localScale.x), (TileHeight / P1MarkerSprite.bounds.size.y) * (1 / newMapSquare.transform.localScale.y), 1);
+                SpriteRenderer markerSprite = newMapSquareMarker.AddComponent<SpriteRenderer>();
+                markerSprite.color = Color.white;
+                markerSprite.sprite = null;
+                markerSprite.sortingOrder = 1;
 
                 MapTile newTile = newMapSquare.AddComponent<MapTile>();
                 TileMap[i].Add(newTile);
                 newTile.X = i;
                 newTile.Y = j;
                 newTile.ParentMap = this;
+
+                newTile.Marker = markerSprite;
 
                 if (Random.Range(0.0f, 1.0f) < percentBombs) {
                     newTile.HasBomb = true;
@@ -59,7 +71,7 @@ public class Map : MonoBehaviour {
         int middle = height / 2;
         for (int i = -1 * NumberOfPlayers / 2; i < NumberOfPlayers / 2; i++) {
             TileMap[0][middle + i].HasBomb = false;
-            TileMap[0][middle + i].Explore();
+            TileMap[0][middle + i].Explore(null);
             TileMap[width - 1][middle + i].HasBomb = false;
             TileMap[width - 1][middle + i].IsGoal = true;
 

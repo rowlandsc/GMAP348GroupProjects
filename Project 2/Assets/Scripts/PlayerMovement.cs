@@ -13,6 +13,12 @@ public class PlayerMovement : MonoBehaviour
     public int yLoc;
     bool isValid = true;
     MapTile tile;
+    public bool dead = false;
+    public float respawnTimer = 3;
+    public float currentTimer = 0;
+
+    private SpriteRenderer _spriteRenderer = null;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -32,7 +38,9 @@ public class PlayerMovement : MonoBehaviour
         }
         cPosition = gameObject.transform;
         hold = transform;
-	}
+
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -42,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move()
     {
+        if (dead) return;
+
         if (player == "p1")
         {
             Debug.Log("p1");
@@ -51,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     cPosition.position = new Vector3(cPosition.position.x, cPosition.position.y + blockSize, cPosition.position.z);
                     yLoc += 1;
-                    Map.Instance.GetTile(xLoc, yLoc).Explore();
+                    Map.Instance.GetTile(xLoc, yLoc).Explore(this);
                 }
                 else
                 {
@@ -66,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     cPosition.position = new Vector3(cPosition.position.x - blockSize, cPosition.position.y, cPosition.position.z);
                     xLoc -= 1;
-                    Map.Instance.GetTile(xLoc, yLoc).Explore();
+                    Map.Instance.GetTile(xLoc, yLoc).Explore(this);
                 }
                 else
                 {
@@ -80,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     cPosition.position = new Vector3(cPosition.position.x, cPosition.position.y - blockSize, cPosition.position.z);
                     yLoc -= 1;
-                    Map.Instance.GetTile(xLoc, yLoc).Explore();
+                    Map.Instance.GetTile(xLoc, yLoc).Explore(this);
                 }
                 else
                 {
@@ -94,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     cPosition.position = new Vector3(cPosition.position.x + blockSize, cPosition.position.y, cPosition.position.z);
                     xLoc += 1;
-                    Map.Instance.GetTile(xLoc, yLoc).Explore();
+                    Map.Instance.GetTile(xLoc, yLoc).Explore(this);
                 }
                 else
                 {
@@ -113,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     cPosition.position = new Vector3(cPosition.position.x, cPosition.position.y + blockSize, cPosition.position.z);
                     yLoc += 1;
-                    Map.Instance.GetTile(xLoc, yLoc).Explore();
+                    Map.Instance.GetTile(xLoc, yLoc).Explore(this);
                 }
                 else
                 {
@@ -128,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     cPosition.position = new Vector3(cPosition.position.x - blockSize, cPosition.position.y, cPosition.position.z);
                     xLoc -= 1;
-                    Map.Instance.GetTile(xLoc, yLoc).Explore();
+                    Map.Instance.GetTile(xLoc, yLoc).Explore(this);
                 }
                 else
                 {
@@ -142,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     cPosition.position = new Vector3(cPosition.position.x, cPosition.position.y - blockSize, cPosition.position.z);
                     yLoc -= 1;
-                    Map.Instance.GetTile(xLoc, yLoc).Explore();
+                    Map.Instance.GetTile(xLoc, yLoc).Explore(this);
                 }
                 else
                 {
@@ -156,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     cPosition.position = new Vector3(cPosition.position.x + blockSize, cPosition.position.y, cPosition.position.z);
                     xLoc += 1;
-                    Map.Instance.GetTile(xLoc, yLoc).Explore();
+                    Map.Instance.GetTile(xLoc, yLoc).Explore(this);
                 }
                 else
                 {
@@ -165,5 +175,42 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Kill() {
+        dead = true;
+        _spriteRenderer.enabled = false;
+
+        currentTimer = respawnTimer;
+        respawnTimer = respawnTimer * 1.5f;
+
+        StartCoroutine(Respawn());
+    }
+
+    IEnumerator Respawn() {
+        while (currentTimer > 0) {
+            currentTimer -= Time.deltaTime;
+            yield return null;
+        }
+
+        dead = false;
+
+        if (gameObject.tag == "Player1") {
+            player = "p1";
+            tile = Map.Instance.PlayerStartTiles[1];
+            xLoc = tile.X;
+            yLoc = tile.Y;
+        }
+        else {
+            player = "p2";
+            tile = Map.Instance.PlayerStartTiles[0];
+            xLoc = tile.X;
+            yLoc = tile.Y;
+        }
+
+        facing = "right";
+        cPosition.rotation = Quaternion.Euler(0, 0, 270);
+        cPosition.position = tile.transform.position;
+        _spriteRenderer.enabled = true;
     }
 }

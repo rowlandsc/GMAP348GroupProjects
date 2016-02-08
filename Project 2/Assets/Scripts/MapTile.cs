@@ -16,6 +16,11 @@ public class MapTile : MonoBehaviour {
     public bool HasBomb = false;
     public bool IsGoal = false;
 
+    public bool P1Marked = false;
+    public bool P2Marked = false;
+
+    public SpriteRenderer Marker;
+
     private SpriteRenderer _spriteRenderer;
 
     void Start() {
@@ -41,6 +46,13 @@ public class MapTile : MonoBehaviour {
         else {
             _spriteRenderer.color = ParentMap.NotExploredColor;
         }       
+
+        if (P1Marked) {
+
+        }
+        if (P2Marked) {
+
+        }
     }
 
     public bool IsNearBomb() {
@@ -58,11 +70,14 @@ public class MapTile : MonoBehaviour {
         return false;
     }
 
-    public void Explore() {
+    public void Explore(PlayerMovement player) {
         IsExplored = true;
         if (HasBomb) {
             HasBomb = false;
             Debug.Log("Stepped on bomb!");
+            if (player != null) {
+                player.Kill();
+            }
         }
 
         MapTile left = ParentMap.GetTile(X - 1, Y);
@@ -85,7 +100,7 @@ public class MapTileCustomEditor : Editor {
         MapTile tile = (MapTile)target;
 
         if (GUILayout.Button("Explore")) {
-            tile.Explore();
+            tile.Explore(null);
         }
 
     }
