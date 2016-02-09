@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     Transform cPosition;
     Transform hold;
+    public int Score = 0;
     public int blockSize = 1;
     public string facing = "up";
     public int xLoc;
@@ -50,11 +51,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move()
     {
-        if (dead) return;
+        if (dead || GameManager.Instance.IsGameOver) return;
 
         if (player == "p1")
         {
-            Debug.Log("p1");
             if (Input.GetKeyDown(KeyCode.W) && hold.transform == cPosition)
             {
                 if (facing == "up" && yLoc < Map.Instance.TileMap[0].Count-1)
@@ -112,11 +112,31 @@ public class PlayerMovement : MonoBehaviour
                     facing = "right";
                 }
             }
+
+            if (Input.GetKeyUp(KeyCode.LeftShift)) {
+                MapTile faceTile = null;
+                switch(facing) {
+                    case "up":
+                        faceTile = Map.Instance.GetTile(xLoc, yLoc + 1);
+                        break;
+                    case "down":
+                        faceTile = Map.Instance.GetTile(xLoc, yLoc - 1);
+                        break;
+                    case "right":
+                        faceTile = Map.Instance.GetTile(xLoc + 1, yLoc);
+                        break;
+                    case "left":
+                        faceTile = Map.Instance.GetTile(xLoc - 1, yLoc);
+                        break;
+                }
+                if (faceTile) {
+                    faceTile.Mark(true);
+                }
+            }
         }
 
         if (player == "p2")
         {
-            Debug.Log("p2");
             if (Input.GetKeyDown(KeyCode.UpArrow) && hold.transform == cPosition)
             {
                 if (facing == "up" && yLoc < Map.Instance.TileMap[0].Count - 1)
@@ -172,6 +192,27 @@ public class PlayerMovement : MonoBehaviour
                 {
                     cPosition.rotation = Quaternion.Euler(0, 0, 270);
                     facing = "right";
+                }
+            }
+
+            if (Input.GetKeyUp(KeyCode.RightShift)) {
+                MapTile faceTile = null;
+                switch (facing) {
+                    case "up":
+                        faceTile = Map.Instance.GetTile(xLoc, yLoc + 1);
+                        break;
+                    case "down":
+                        faceTile = Map.Instance.GetTile(xLoc, yLoc - 1);
+                        break;
+                    case "right":
+                        faceTile = Map.Instance.GetTile(xLoc + 1, yLoc);
+                        break;
+                    case "left":
+                        faceTile = Map.Instance.GetTile(xLoc - 1, yLoc);
+                        break;
+                }
+                if (faceTile) {
+                    faceTile.Mark(false);
                 }
             }
         }

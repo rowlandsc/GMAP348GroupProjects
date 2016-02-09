@@ -48,10 +48,13 @@ public class MapTile : MonoBehaviour {
         }       
 
         if (P1Marked) {
-
+            Marker.sprite = Map.Instance.P1MarkerSprite;
         }
-        if (P2Marked) {
-
+        else if (P2Marked) {
+            Marker.sprite = Map.Instance.P2MarkerSprite;
+        }
+        else {
+            Marker.sprite = null;
         }
     }
 
@@ -71,14 +74,31 @@ public class MapTile : MonoBehaviour {
     }
 
     public void Explore(PlayerMovement player) {
-        IsExplored = true;
+        if (IsExplored) return;
+
         if (HasBomb) {
             HasBomb = false;
             Debug.Log("Stepped on bomb!");
             if (player != null) {
                 player.Kill();
+                player.Score += ScoreManager.Instance.SCORE_BOMB; 
             }
         }
+        else {
+            if (player != null) {
+                player.Score += ScoreManager.Instance.SCORE_EXPLORE;
+            }
+        }
+
+        if (IsGoal) {
+            player.Score += ScoreManager.Instance.SCORE_GOAL;
+            GameManager.Instance.GameOver();
+        }
+
+        IsExplored = true;
+
+        P1Marked = false;
+        P2Marked = false;
 
         MapTile left = ParentMap.GetTile(X - 1, Y);
         MapTile right = ParentMap.GetTile(X + 1, Y);
@@ -88,6 +108,21 @@ public class MapTile : MonoBehaviour {
         if (right) right.IsVisible = true;
         if (up) up.IsVisible = true;
         if (down) down.IsVisible = true;
+    }
+
+    public void Mark(bool player1) {
+        if (IsExplored) return;
+
+        if (player1) {
+            if (!P2Marked) {
+                P1Marked = !P1Marked;
+            }
+        }
+        else {
+            if (!P1Marked) {
+                P2Marked = !P2Marked;
+            }
+        }
     }
 }
 
