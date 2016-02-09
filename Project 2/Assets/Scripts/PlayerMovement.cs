@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     string player;
-
+    public Text p1RespawnTime, p2RespawnTime;
     Transform cPosition;
     Transform hold;
     public int Score = 0;
@@ -231,6 +231,14 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Respawn() {
         while (currentTimer > 0) {
             currentTimer -= Time.deltaTime;
+            if (gameObject.tag == "Player1")
+            {
+                p1RespawnTime.text = "Respawn: " + (int)currentTimer;
+            }
+            if (gameObject.tag == "Player2")
+            {
+                p2RespawnTime.text = "Respawn: " + (int)currentTimer;
+            }
             yield return null;
         }
 
