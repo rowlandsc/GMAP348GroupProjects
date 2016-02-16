@@ -1,0 +1,386 @@
+fileFormatVersion: 2
+guid: 60c97aec282b85443b6b87b65050b823
+timeCreated: 1455598372
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: RobotBoyIdleBryanSprite_0
+    21300002: RobotBoyIdleBryanSprite_1
+    21300004: RobotBoyIdleBryanSprite_2
+    21300006: RobotBoyIdleBryanSprite_3
+    21300008: RobotBoyIdleBryanSprite_4
+    21300010: RobotBoyIdleBryanSprite_5
+    21300012: RobotBoyIdleBryanSprite_6
+    21300014: RobotBoyIdleBryanSprite_7
+    21300016: RobotBoyIdleBryanSprite_8
+    21300018: RobotBoyIdleBryanSprite_9
+    21300020: RobotBoyIdleBryanSprite_10
+    21300022: RobotBoyIdleBryanSprite_11
+    21300024: RobotBoyIdleBryanSprite_12
+    21300026: RobotBoyIdleBryanSprite_13
+    21300028: RobotBoyIdleBryanSprite_14
+    21300030: RobotBoyIdleBryanSprite_15
+    21300032: RobotBoyIdleBryanSprite_16
+    21300034: RobotBoyIdleBryanSprite_17
+    21300036: RobotBoyIdleBryanSprite_18
+    21300038: RobotBoyIdleBryanSprite_19
+    21300040: RobotBoyIdleBryanSprite_20
+    21300042: RobotBoyIdleBryanSprite_21
+    21300044: RobotBoyIdleBryanSprite_22
+    21300046: RobotBoyIdleBryanSprite_23
+    21300048: RobotBoyIdleBryanSprite_24
+    21300050: RobotBoyIdleBryanSprite_25
+    21300052: RobotBoyIdleBryanSprite_26
+    21300054: RobotBoyIdleBryanSprite_27
+    21300056: RobotBoyIdleBryanSprite_28
+    21300058: RobotBoyIdleBryanSprite_29
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 200
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: RobotBoyIdleBryanSprite_0
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 1757
+        width: 106
+        height: 273
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_1
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 1756
+        width: 110
+        height: 273
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_2
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 1757
+        width: 108
+        height: 273
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_3
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 1757
+        width: 116
+        height: 275
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_4
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1785
+        width: 61
+        height: 145
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_5
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 1785
+        width: 60
+        height: 143
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_6
+      rect:
+        serializedVersion: 2
+        x: 1752
+        y: 1784
+        width: 59
+        height: 145
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_7
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 1474
+        width: 100
+        height: 280
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_8
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 1473
+        width: 113
+        height: 282
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_9
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 1474
+        width: 108
+        height: 284
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_10
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 1473
+        width: 106
+        height: 285
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_11
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1510
+        width: 61
+        height: 144
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_12
+      rect:
+        serializedVersion: 2
+        x: 1477
+        y: 1510
+        width: 59
+        height: 143
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_13
+      rect:
+        serializedVersion: 2
+        x: 1752
+        y: 1510
+        width: 60
+        height: 143
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_14
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1235
+        width: 90
+        height: 221
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_15
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 1235
+        width: 91
+        height: 221
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_16
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 1235
+        width: 89
+        height: 221
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_17
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 1235
+        width: 89
+        height: 221
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_18
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 1235
+        width: 59
+        height: 145
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_19
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 1235
+        width: 60
+        height: 143
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_20
+      rect:
+        serializedVersion: 2
+        x: 1751
+        y: 1235
+        width: 61
+        height: 145
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_21
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 960
+        width: 88
+        height: 220
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_22
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 960
+        width: 88
+        height: 220
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_23
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 960
+        width: 88
+        height: 220
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_24
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 960
+        width: 89
+        height: 220
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_25
+      rect:
+        serializedVersion: 2
+        x: 1201
+        y: 960
+        width: 60
+        height: 143
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_26
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 960
+        width: 60
+        height: 143
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_27
+      rect:
+        serializedVersion: 2
+        x: 1748
+        y: 960
+        width: 63
+        height: 142
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_28
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 685
+        width: 88
+        height: 220
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobotBoyIdleBryanSprite_29
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 685
+        width: 87
+        height: 220
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
