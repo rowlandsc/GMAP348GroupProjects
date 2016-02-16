@@ -48,20 +48,30 @@ namespace UnityStandardAssets._2D
         }
 
 
-        public void Move(float move, bool crouch, bool jump)
+        public void Move(float move, bool crouch, bool jump, bool down)
         {
             // If crouching, check to see if the character can stand up
-            if (!crouch && m_Anim.GetBool("Crouch"))
+            /*if (!crouch && m_Anim.GetBool("Crouch"))
             {
                 // If the character has a ceiling preventing them from standing up, keep them crouching
                 if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
                 {
                     crouch = true;
                 }
-            }
+            }*/
 
             // Set whether or not the character is crouching in the animator
-            m_Anim.SetBool("Crouch", crouch);
+            //m_Anim.SetBool("Crouch", crouch);
+
+            if (down && m_Rigidbody2D.velocity.y <= 0) {
+                gameObject.layer = LayerMask.NameToLayer("PlayerPassthrough");
+            }
+            else if (m_Rigidbody2D.velocity.y > 0) {
+                gameObject.layer = LayerMask.NameToLayer("PlayerJump");
+            }
+            else {
+                gameObject.layer = LayerMask.NameToLayer("PlayerWalkAndFall");
+            }
 
             //only control the player if grounded or airControl is turned on
             if (m_Grounded || m_AirControl)
