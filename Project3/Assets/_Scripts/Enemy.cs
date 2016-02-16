@@ -27,6 +27,7 @@ public class Enemy : Character {
         if (thisCollider == FrontCollider) {
             Debug.Log("Hit front");
             if (!player.Frozen) {
+                Player.Instance.GetComponent<Player>().PlayerHit();
                 StartCoroutine(player.Knock(false, player.KnockDuration, player.KnockSpeed, false));
             }
         }

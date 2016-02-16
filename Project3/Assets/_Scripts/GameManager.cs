@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
     public static GameManager Instance = null;
@@ -15,14 +15,15 @@ public class GameManager : MonoBehaviour {
 
     public bool GameOver = false;
     public float CurrentTime = 0;
-    public UnityEngine.UI.Text TimeText;
-
+    public Text TimeText;
+    public Text coffee;
 
     void Update() {
         if (!GameOver) CurrentTime += Time.deltaTime;
-
+        coffee.text = "Coffee: " + Player.Instance.Coffee.ToString();
         if (Input.GetKeyUp("r")) {
             Application.LoadLevel(0);
+            
         };
 
         UpdateTimeText();
