@@ -5,7 +5,7 @@ public class Coffee : MonoBehaviour {
 
     public float CoffeeBonus = 5;
     public float MaxSpeed = 1.0f;
-
+    public GameObject Explosion;
 	void Start () {
 	
 	}
@@ -17,6 +17,7 @@ public class Coffee : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D coll) {
         if (coll.collider.gameObject.tag == "Player") {
             coll.collider.gameObject.GetComponent<Player>().Coffee += CoffeeBonus;
+            Instantiate(Explosion, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }
     }
