@@ -29,6 +29,7 @@ namespace UnityStandardAssets._2D
         public float FallTimer = 0.2f;
         private float _currentFallTimer = 0;
         public float KnockbackForce;
+        public LayerMask KnockbackCollisionMask;
 
         private void Awake() {
             // Setting up references.
@@ -167,9 +168,13 @@ namespace UnityStandardAssets._2D
             }
 
             float timer = 0;
-            _rigidbody.AddForce(new Vector2(1, 0) * direction * KnockbackForce);
+            //_rigidbody.AddForce(new Vector2(1, 0) * direction * KnockbackForce);
             while (timer < duration) {
                 timer += Time.deltaTime;
+                Collider2D collider = Physics2D.OverlapCircle(transform.position + new Vector3(0.5f, 0) * direction, 0.5f, KnockbackCollisionMask.value);
+                if (!collider) {
+                    transform.position += new Vector3(direction * driftSpeed * Time.deltaTime, 0, 0);
+                }
 
                 yield return null;
             }

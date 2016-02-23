@@ -4,6 +4,9 @@ using System.Collections;
 public class MeanderAI : EnemyAI {
 
     public LayerMask TurnAroundAt;
+    public float MinTimeBeforeTurnAround = 0.4f;
+
+    private float _timeSinceLastTurnAround = 0;
 
     protected override void Idle() {
         if (_enemy.CurrentFacing == Character.Facing.RIGHT) {
@@ -36,10 +39,14 @@ public class MeanderAI : EnemyAI {
             }
         }
 
-        if ((Player.Instance.transform.position.x > transform.position.x && _enemy.CurrentFacing == Character.Facing.LEFT) ||
-            (Player.Instance.transform.position.x < transform.position.x && _enemy.CurrentFacing == Character.Facing.RIGHT)) {
+        if (((Player.Instance.transform.position.x > transform.position.x && _enemy.CurrentFacing == Character.Facing.LEFT) ||
+            (Player.Instance.transform.position.x < transform.position.x && _enemy.CurrentFacing == Character.Facing.RIGHT)) &&
+            _timeSinceLastTurnAround >= MinTimeBeforeTurnAround) {
 
             transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            _timeSinceLastTurnAround = 0;
         }
+
+        _timeSinceLastTurnAround += Time.deltaTime;
     }
 }
