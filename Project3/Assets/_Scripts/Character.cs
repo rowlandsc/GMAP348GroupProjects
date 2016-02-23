@@ -11,13 +11,16 @@ public class Character : MonoBehaviour {
 
     public float KnockDuration = 1.0f;
     public float KnockSpeed = 1.0f;
+    public float InvulnerableFlashSpeed = 1.0f;
 
     public static float DeathHeight = -200;
 
-    private Rigidbody2D _rigidbody;
+    protected Rigidbody2D _rigidbody;
+    protected SpriteRenderer _spriteRenderer;
 
 	void Start () {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
 	protected virtual void Update () {
@@ -33,7 +36,7 @@ public class Character : MonoBehaviour {
         }
     }
 
-    public IEnumerator Knock(bool forward, float duration, float driftSpeed, bool killOnFinish) {
+    public virtual IEnumerator Knock(bool forward, float duration, float driftSpeed, bool killOnFinish) {
         int currentMask = gameObject.layer;
         SetLayerRecursively(gameObject, LayerMask.NameToLayer("Knockback"));
         Frozen = true;
@@ -64,7 +67,7 @@ public class Character : MonoBehaviour {
 
         float timer = 0;
         if (_rigidbody != null) {
-            _rigidbody.AddForce(new Vector2(direction * 15, 0), ForceMode2D.Force);
+            _rigidbody.AddForce(transform.right * direction * 10000);
         }
         while (timer < duration) {
             timer += Time.deltaTime;
@@ -147,11 +150,24 @@ public class Character : MonoBehaviour {
         Frozen = false;
     }
 
+    public IEnumerator InvulnerableForSeconds(float time) {
+        Invulnerable = true;
+        float timer = 0;
+        Color realColor = _spriteRenderer.color;
+        while (timer < time) {
+            timer += Time.deltaTime;
+            _spriteRenderer.color = new Color(_spriteRenderer.color.r, Mathf.Sin(timer * InvulnerableFlashSpeed)/2.0f + 0.5f, Mathf.Sin(timer * InvulnerableFlashSpeed) / 2.0f + 0.5f, 1);
+            yield return null;
+        }
+        _spriteRenderer.color = realColor;
+        Invulnerable = false;
+    }
+
     public void OnDeath() {
         gameObject.SetActive(false);
     }
 
-    void SetLayerRecursively(GameObject go, int layer) {
+    public void SetLayerRecursively(GameObject go, int layer) {
         go.layer = layer;
         foreach (Transform child in go.transform) {
             SetLayerRecursively(child.gameObject, layer);

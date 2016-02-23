@@ -37,7 +37,7 @@ namespace UnityStandardAssets._2D
             // Read the inputs.
             bool crouch = Input.GetKey(KeyCode.LeftControl);
             float h = CrossPlatformInputManager.GetAxis("Horizontal");
-            bool down = Input.GetKey(KeyCode.DownArrow);
+            bool down = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
             // Pass all parameters to the character control script.
             m_Character.Move(h, crouch, m_Jump, down);
             m_Jump = false;

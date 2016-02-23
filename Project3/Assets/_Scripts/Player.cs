@@ -24,4 +24,6 @@ public class Player : MonoBehaviour {
         Debug.Log("coffee");
         Coffee -= 5f;
     }
+
+
 }

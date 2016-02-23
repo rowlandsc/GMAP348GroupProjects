@@ -29,11 +29,12 @@ public class Enemy : Character {
 
         if (thisCollider == FrontCollider || thisCollider == WeaponCollider) {
             Debug.Log("Hit front");
-            if (!player.Frozen) {
+            if (!player.Frozen && !player.Invulnerable) {
                 Player.Instance.GetComponent<Player>().PlayerHit();
                 StartCoroutine(player.Knock(false, player.KnockDuration, player.KnockSpeed, false));
+                StartCoroutine(player.InvulnerableForSeconds(player.KnockDuration * 2));
+                StartCoroutine(FreezeForSeconds(player.KnockDuration));
             }
-            StartCoroutine(FreezeForSeconds(OnHitPlayerFreezeLength));
         }
         if (thisCollider == BackCollider) {
             Debug.Log("Hit back");
