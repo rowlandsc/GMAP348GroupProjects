@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
     public float ExplosionDensityBegin = 1f;
     public float ExplosionDensityEnd = 5f;
     public GameObject Explosion;
-
+    
     private Character _playerCharacter;
     private bool _exploded = false;
 
@@ -43,7 +43,9 @@ public class Player : MonoBehaviour {
     IEnumerator CoffeeExplosion() {
         _playerCharacter.Frozen = true;
         _playerCharacter.Invulnerable = true;
-
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.Play();
+        audio.Play(44100);
         Enemy[] chars = GameObject.FindObjectsOfType<Enemy>();
         foreach (Enemy enemy in chars) {
             if (!enemy.gameObject.activeSelf) continue;
