@@ -178,7 +178,7 @@ namespace UnityStandardAssets._2D
                 yield return StartCoroutine(Kill(forward, driftSpeed));
             }
             else {
-                transform.position = new Vector3(transform.position.x, startY, transform.position.z);
+                //transform.position = new Vector3(transform.position.x, startY, transform.position.z);
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 Frozen = false;
                 SetLayerRecursively(gameObject, currentMask);

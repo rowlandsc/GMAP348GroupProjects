@@ -21,6 +21,23 @@ public class MeanderAI : EnemyAI {
     }
 
     protected override void Chase() {
-        
+        if (_enemy.CurrentFacing == Character.Facing.RIGHT) {
+            Collider2D col = Physics2D.OverlapArea(_enemy.WeaponCollider.bounds.min, _enemy.WeaponCollider.bounds.max, LayerMask.GetMask("Ground"));
+            if (col == null) {
+                transform.position += new Vector3(ChaseSpeed * Time.deltaTime, 0, 0);
+            }
+        }
+        else {   
+            Collider2D col = Physics2D.OverlapArea(_enemy.WeaponCollider.bounds.min, _enemy.WeaponCollider.bounds.max, LayerMask.GetMask("Ground"));
+            if (col == null) {
+                transform.position -= new Vector3(ChaseSpeed * Time.deltaTime, 0, 0);
+            }
+        }
+
+        if ((Player.Instance.transform.position.x > transform.position.x && _enemy.CurrentFacing == Character.Facing.LEFT) ||
+            (Player.Instance.transform.position.x < transform.position.x && _enemy.CurrentFacing == Character.Facing.RIGHT)) {
+
+            transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        }
     }
 }

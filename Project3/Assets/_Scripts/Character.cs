@@ -105,7 +105,7 @@ public class Character : MonoBehaviour {
             yield return StartCoroutine(Kill(forward, driftSpeed));
         }
         else {
-            transform.position = new Vector3(transform.position.x, startY, transform.position.z);
+            //transform.position = new Vector3(transform.position.x, startY, transform.position.z);
             transform.rotation = Quaternion.Euler(0, 0, 0);
             Frozen = false;
             SetLayerRecursively(gameObject, currentMask);
@@ -123,6 +123,8 @@ public class Character : MonoBehaviour {
         else {
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 85));
         }
+
+        OnKill();
 
         float accleration = 1f;
         float fallSpeed = 0;
@@ -163,7 +165,11 @@ public class Character : MonoBehaviour {
         Invulnerable = false;
     }
 
-    public void OnDeath() {
+    public virtual void OnKill() {
+
+    }
+
+    public virtual void OnDeath() {
         gameObject.SetActive(false);
     }
 

@@ -9,6 +9,7 @@ public class Enemy : Character {
     public GameObject CoffeePrefab;
     public int MinCoffee = 1;
     public int MaxCoffee = 3;
+    public GameObject ExplosionPrefab;
 
     public float OnHitPlayerFreezeLength = 0.5f;
 
@@ -33,7 +34,7 @@ public class Enemy : Character {
                 Player.Instance.GetComponent<Player>().PlayerHit();
                 StartCoroutine(player.Knock(false, player.KnockDuration, player.KnockSpeed, false));
                 StartCoroutine(player.InvulnerableForSeconds(player.KnockDuration * 2));
-                StartCoroutine(FreezeForSeconds(player.KnockDuration));
+                StartCoroutine(FreezeForSeconds(player.KnockDuration * 1.5f));
             }
         }
         if (thisCollider == BackCollider) {
@@ -52,5 +53,14 @@ public class Enemy : Character {
             GameObject coffee = GameObject.Instantiate(CoffeePrefab, transform.position, transform.rotation) as GameObject;
             coffee.GetComponent<Coffee>().Shoot();
         }
+    }
+
+    public override void OnKill() {
+        Instantiate(ExplosionPrefab, transform.position, transform.rotation);
+    }
+
+    public override void OnDeath() {
+        Instantiate(ExplosionPrefab, transform.position, transform.rotation);
+        base.OnDeath();
     }
 }
