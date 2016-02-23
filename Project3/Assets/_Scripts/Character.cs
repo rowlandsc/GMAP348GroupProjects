@@ -63,9 +63,12 @@ public class Character : MonoBehaviour {
         }
 
         float timer = 0;
+        if (_rigidbody != null) {
+            _rigidbody.AddForce(new Vector2(direction * 15, 0), ForceMode2D.Force);
+        }
         while (timer < duration) {
             timer += Time.deltaTime;
-            transform.position += new Vector3(direction * driftSpeed * Time.deltaTime, 0, 0);
+            if (!_rigidbody) transform.position += new Vector3(direction * driftSpeed * Time.deltaTime, 0, 0);
 
             if (timer >= duration / 4.0f && timer < duration / 2.0f) {
                 if (forward) {
@@ -136,6 +139,12 @@ public class Character : MonoBehaviour {
         }
 
         OnDeath();
+    }
+
+    public IEnumerator FreezeForSeconds(float time) {
+        Frozen = true;
+        yield return new WaitForSeconds(time);
+        Frozen = false;
     }
 
     public void OnDeath() {

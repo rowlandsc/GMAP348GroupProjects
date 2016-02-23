@@ -5,13 +5,16 @@ public class Enemy : Character {
 
     public Collider2D FrontCollider;
     public Collider2D BackCollider;
+    public Collider2D WeaponCollider;
     public GameObject CoffeePrefab;
     public int MinCoffee = 1;
     public int MaxCoffee = 3;
 
+    public float OnHitPlayerFreezeLength = 0.5f;
+
     
     void Start () {
-	
+	    
 	}
 
     protected override void Update () {
@@ -24,12 +27,13 @@ public class Enemy : Character {
 
         Character player = collision.collider.GetComponent<Character>();
 
-        if (thisCollider == FrontCollider) {
+        if (thisCollider == FrontCollider || thisCollider == WeaponCollider) {
             Debug.Log("Hit front");
             if (!player.Frozen) {
                 Player.Instance.GetComponent<Player>().PlayerHit();
                 StartCoroutine(player.Knock(false, player.KnockDuration, player.KnockSpeed, false));
             }
+            StartCoroutine(FreezeForSeconds(OnHitPlayerFreezeLength));
         }
         if (thisCollider == BackCollider) {
             Debug.Log("Hit back");

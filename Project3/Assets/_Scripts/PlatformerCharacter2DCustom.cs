@@ -19,6 +19,9 @@ namespace UnityStandardAssets._2D
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
 
+        public float FallTimer = 0.5f;
+        private float _currentFallTimer = 0;
+
         private void Awake()
         {
             // Setting up references.
@@ -63,7 +66,13 @@ namespace UnityStandardAssets._2D
             // Set whether or not the character is crouching in the animator
             //m_Anim.SetBool("Crouch", crouch);
 
-            if (down && m_Rigidbody2D.velocity.y <= 0) {
+            if (down && m_Rigidbody2D.velocity.y <= 0 && _currentFallTimer <= 0) {
+                _currentFallTimer = FallTimer;
+            }
+            if (_currentFallTimer > 0) {
+                _currentFallTimer -= Time.deltaTime;
+            }
+            if (_currentFallTimer > 0) {
                 gameObject.layer = LayerMask.NameToLayer("PlayerPassthrough");
             }
             else if (m_Rigidbody2D.velocity.y > 0) {
