@@ -46,8 +46,8 @@ public class EnemyAI : MonoBehaviour {
             if (_enemy.CurrentFacing == Character.Facing.LEFT) {
                 direction = -1;
             }
-            RaycastHit2D hit = Physics2D.Linecast(transform.position + new Vector3(direction * 3, 1, 0), Player.Instance.transform.position);
-            if (hit.collider.gameObject.tag == "Player") {
+            RaycastHit2D hit = Physics2D.Linecast(transform.position + new Vector3(direction * 3, 1, 0), transform.position + (Player.Instance.transform.position - transform.position).normalized * Camera.main.orthographicSize * 0.8f);
+            if (hit.collider && hit.collider.gameObject.tag == "Player") {
                 _currentChaseTimer = ChaseTimer;
             }
             else {
