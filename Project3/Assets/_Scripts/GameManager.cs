@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour {
     public float CurrentTime = 0;
     public Text TimeText;
     public Text coffee;
+    public RectTransform GameOverRect;
+    public float GameOverScaleIncreaseSpeed = 1.1f;
+    public Text GameOverTime;
 
     void Update() {
         if (!GameOver) CurrentTime += Time.deltaTime;
@@ -38,5 +41,22 @@ public class GameManager : MonoBehaviour {
         string secString = (sec >= 10) ? sec.ToString() : "0" + sec.ToString();
 
         TimeText.text = minString + ":" + secString;
+    }
+
+    public void EndGame() {
+        GameOver = true;
+        GameOverTime.text = TimeText.text;
+        GameOverRect.gameObject.SetActive(true);
+
+        StartCoroutine(EndGameCoroutine(Player.Instance.ExplosionLength * 0.9f));
+    }
+
+    IEnumerator EndGameCoroutine(float time) {
+        float timer = 0;
+        while (timer <= time) {
+            timer += Time.deltaTime;
+            GameOverRect.localScale *= GameOverScaleIncreaseSpeed;
+            yield return null;
+        }
     }
 }

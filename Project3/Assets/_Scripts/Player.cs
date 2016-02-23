@@ -41,6 +41,7 @@ public class Player : MonoBehaviour {
     }
 
     IEnumerator CoffeeExplosion() {
+        GameManager.Instance.EndGame();
         _playerCharacter.Frozen = true;
         _playerCharacter.Invulnerable = true;
         AudioSource audio = GetComponent<AudioSource>();
