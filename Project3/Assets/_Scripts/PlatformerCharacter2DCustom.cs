@@ -26,7 +26,7 @@ namespace UnityStandardAssets._2D
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
 
-        public float FallTimer = 0.5f;
+        public float FallTimer = 0.2f;
         private float _currentFallTimer = 0;
         public float KnockbackForce;
 
