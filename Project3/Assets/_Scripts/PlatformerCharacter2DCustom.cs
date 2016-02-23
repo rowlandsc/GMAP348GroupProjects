@@ -142,12 +142,12 @@ namespace UnityStandardAssets._2D
             SetLayerRecursively(gameObject, LayerMask.NameToLayer("Knockback"));
             Frozen = true;
 
-            if ((CurrentFacing == Facing.RIGHT && forward) || (CurrentFacing == Facing.LEFT && !forward)) {
+            /*if ((CurrentFacing == Facing.RIGHT && forward) || (CurrentFacing == Facing.LEFT && !forward)) {
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, -45));
             }
             else {
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, 45));
-            }
+            }*/
 
             float startY = transform.position.y;
             float gravity = 0;
@@ -179,7 +179,7 @@ namespace UnityStandardAssets._2D
             }
             else {
                 //transform.position = new Vector3(transform.position.x, startY, transform.position.z);
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+                //transform.rotation = Quaternion.Euler(0, 0, 0);
                 Frozen = false;
                 SetLayerRecursively(gameObject, currentMask);
                 if (_rigidbody) {
