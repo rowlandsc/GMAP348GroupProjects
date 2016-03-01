@@ -29,6 +29,8 @@ public class Map : MonoBehaviour {
     public Color ExploredColor;
     public Color GoalColor;
 
+    public GameObject ExplosionPrefab;
+
     public List<MapTile> PlayerStartTiles;
 
     public void Initialize(int width, int height, float percentBombs, int NumberOfPlayers) {

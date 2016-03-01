@@ -83,6 +83,9 @@ public class MapTile : MonoBehaviour {
                 player.Kill();
                 player.Score += ScoreManager.Instance.SCORE_BOMB; 
             }
+
+            ScreenShake.Instance.ShakeCamera();
+            Instantiate(ParentMap.ExplosionPrefab, transform.position + new Vector3(0, 0, -1), transform.rotation);
         }
         else {
             if (player != null) {
