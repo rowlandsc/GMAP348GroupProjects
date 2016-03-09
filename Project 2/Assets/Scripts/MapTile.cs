@@ -95,7 +95,7 @@ public class MapTile : MonoBehaviour {
 
         if (IsGoal) {
             player.Score += ScoreManager.Instance.SCORE_GOAL;
-            GameManager.Instance.GameOver();
+            StartCoroutine(GameManager.Instance.GameOver());
         }
 
         IsExplored = true;

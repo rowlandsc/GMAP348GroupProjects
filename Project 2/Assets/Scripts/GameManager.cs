@@ -43,13 +43,16 @@ public class GameManager : MonoBehaviour {
         } 
     }
 	
-	public void GameOver() {
+	public IEnumerator GameOver() {
         IsGameOver = true;
 
         PlayerMovement player1 = p1.GetComponent<PlayerMovement>();
         PlayerMovement player2 = p2.GetComponent<PlayerMovement>();
 
-        StartCoroutine(RevealMap());
+        yield return StartCoroutine(RevealMap());
+        while (ScoreManager.Instance.Player1ScoreChanging || ScoreManager.Instance.Player2ScoreChanging) {
+            yield return null;
+        }
 
         GameOverScreen.SetActive(true);
         if (player1.Score > player2.Score) {
@@ -61,37 +64,14 @@ public class GameManager : MonoBehaviour {
         else {
             Tie.SetActive(true);
         }
+
+        ScreenShake.Instance.ShakeCamera(ScreenShake.Instance.Duration, ScreenShake.Instance.Strength * 2, ScreenShake.Instance.Vibrato, ScreenShake.Instance.Randomness);
     }
 
     IEnumerator RevealMap() {
 
         PlayerMovement player1 = p1.GetComponent<PlayerMovement>();
         PlayerMovement player2 = p2.GetComponent<PlayerMovement>();
-
-        /*for (int i = 0; i < Map.Instance.TileMap.Count; i++) {
-            for (int j = 0; j < Map.Instance.TileMap[i].Count; j++) {
-                MapTile tile = Map.Instance.TileMap[i][j];
-                if (tile.HasBomb) {
-                    tile.IsVisible = true;
-                    if (tile.P1Marked) {
-                        player1.Score += ScoreManager.Instance.SCORE_CORRECT_MARK;
-                    }
-                    if (tile.P2Marked) {
-                        player2.Score += ScoreManager.Instance.SCORE_CORRECT_MARK;
-                    }
-                }
-                else {
-                    tile.IsExplored = true;
-                    if (tile.P1Marked) {
-                        player1.Score += ScoreManager.Instance.SCORE_INCORRECT_MARK;
-                    }
-                    if (tile.P2Marked) {
-                        player2.Score += ScoreManager.Instance.SCORE_INCORRECT_MARK;
-                    }
-                }
-                yield return new WaitForSeconds(TileRevealInterval);
-            }
-        }*/
 
         for (int i = Map.Instance.TileMap.Count - 1; i >= 0;  i--) {
             for (int j = 0; j < Map.Instance.TileMap[i].Count / 2.0f; j++) {
@@ -100,6 +80,7 @@ public class GameManager : MonoBehaviour {
                     tileDown.IsVisible = true;
                     if (tileDown.P1Marked) {
                         player1.Score += ScoreManager.Instance.SCORE_CORRECT_MARK;
+                        //ScoreManager.Instance.CreateScoreText(ScoreManager.Instance.Player1ScoreText, tileDown.transform.position, ScoreManager.Instance.SCORE_CORRECT_MARK);
                     }
                     if (tileDown.P2Marked) {
                         player2.Score += ScoreManager.Instance.SCORE_CORRECT_MARK;
@@ -139,4 +120,6 @@ public class GameManager : MonoBehaviour {
             } 
         }
     }
+
+    
 }
