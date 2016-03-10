@@ -19,9 +19,9 @@ public class PlayerMovement : MonoBehaviour
     public float currentTimer = 0;
 
     private SpriteRenderer _spriteRenderer = null;
-
-	// Use this for initialization
-	void Start ()
+    private Animator _animator = null;
+    // Use this for initialization
+    void Start ()
     {
 	    if (gameObject.tag == "Player1")
         {
@@ -39,8 +39,9 @@ public class PlayerMovement : MonoBehaviour
         }
         cPosition = gameObject.transform;
         hold = transform;
-
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _animator = GetComponentInChildren<Animator>();
     }
 	
 	// Update is called once per frame
@@ -187,6 +188,7 @@ public class PlayerMovement : MonoBehaviour
                     cPosition.position = new Vector3(cPosition.position.x + blockSize, cPosition.position.y, cPosition.position.z);
                     xLoc += 1;
                     Map.Instance.GetTile(xLoc, yLoc).Explore(this);
+
                 }
                 else
                 {
@@ -221,7 +223,7 @@ public class PlayerMovement : MonoBehaviour
     public void Kill() {
         dead = true;
         _spriteRenderer.enabled = false;
-
+        _animator.enabled = false;
         currentTimer = respawnTimer;
         respawnTimer = respawnTimer * 1.5f;
 
@@ -261,5 +263,6 @@ public class PlayerMovement : MonoBehaviour
         cPosition.rotation = Quaternion.Euler(0, 0, 270);
         cPosition.position = tile.transform.position;
         _spriteRenderer.enabled = true;
+        _animator.enabled = true;
     }
 }

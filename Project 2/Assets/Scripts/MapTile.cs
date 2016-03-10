@@ -86,10 +86,12 @@ public class MapTile : MonoBehaviour {
 
             ScreenShake.Instance.ShakeCamera();
             Instantiate(ParentMap.ExplosionPrefab, transform.position + new Vector3(0, 0, -1), transform.rotation);
+            SoundManager.Instance.Explosion();
         }
         else {
             if (player != null) {
                 player.Score += ScoreManager.Instance.SCORE_EXPLORE;
+                SoundManager.Instance.Step();
             }
         }
 
