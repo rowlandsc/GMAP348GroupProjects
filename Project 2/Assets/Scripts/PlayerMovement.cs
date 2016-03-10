@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using DG.Tweening;
 public class PlayerMovement : MonoBehaviour
 {
     string player;
@@ -18,8 +19,10 @@ public class PlayerMovement : MonoBehaviour
     public float respawnTimer = 3;
     public float currentTimer = 0;
 
+    
     private SpriteRenderer _spriteRenderer = null;
     private Animator _animator = null;
+    private Animator _animatorStep = null;
     // Use this for initialization
     void Start ()
     {
@@ -41,7 +44,10 @@ public class PlayerMovement : MonoBehaviour
         hold = transform;
         
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        
         _animator = GetComponentInChildren<Animator>();
+        
+
     }
 	
 	// Update is called once per frame
@@ -63,10 +69,14 @@ public class PlayerMovement : MonoBehaviour
                     cPosition.position = new Vector3(cPosition.position.x, cPosition.position.y + blockSize, cPosition.position.z);
                     yLoc += 1;
                     Map.Instance.GetTile(xLoc, yLoc).Explore(this);
+                    //transform.dorotation(to,duration)
+                    
                 }
                 else
                 {
                     cPosition.rotation = Quaternion.Euler(0, 0, 0);
+                   //tween jawn cPosition.DORotateQuaternion(Quaternion.Euler(0, 0, 0), .5f);
+                    
                     facing = "up";
                 }
                 
@@ -78,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
                     cPosition.position = new Vector3(cPosition.position.x - blockSize, cPosition.position.y, cPosition.position.z);
                     xLoc -= 1;
                     Map.Instance.GetTile(xLoc, yLoc).Explore(this);
+                    
                 }
                 else
                 {
@@ -92,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
                     cPosition.position = new Vector3(cPosition.position.x, cPosition.position.y - blockSize, cPosition.position.z);
                     yLoc -= 1;
                     Map.Instance.GetTile(xLoc, yLoc).Explore(this);
+                    
                 }
                 else
                 {
