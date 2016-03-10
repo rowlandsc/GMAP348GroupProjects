@@ -11,9 +11,15 @@ public class ScoreDisplay : MonoBehaviour {
 
     public List<ScoreText> IncomingScores = new List<ScoreText>();
 
+    private RectTransform _rect;
+
+    void Start() {
+        _rect = GetComponent<RectTransform>();
+    }
+
     void Update() {
         foreach (ScoreText st in IncomingScores) {
-            if (Vector3.Distance(transform.position, st.transform.position) <= AbsorbDistance) {
+            if (Vector3.Distance(_rect.anchoredPosition, st.GetComponent<RectTransform>().anchoredPosition) <= AbsorbDistance) {
                 switch (Player) {
                     case 1:
                         ScoreManager.Instance.Player1.Score += st.Value;
@@ -22,6 +28,7 @@ public class ScoreDisplay : MonoBehaviour {
                         ScoreManager.Instance.Player2.Score += st.Value;
                         break;
                 }
+                Debug.Log("Destroying " + st.gameObject.name);
                 IncomingScores.Remove(st);
                 Destroy(st);
             }

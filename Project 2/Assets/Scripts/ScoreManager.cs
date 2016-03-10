@@ -38,9 +38,7 @@ public class ScoreManager : MonoBehaviour {
 
     public Transform ScoreTextParent;
     public GameObject ScoreTextPrefab;
-    public float ScoreTextMinSpeed = 1.0f;
-    public float ScoreTextMaxSpeed = 2.0f;
-    public float ScoreTextGravity = 1.0f;
+    public float ScoreTextFadeDuration = 1.5f;
 
     void Start() {
         Player1ApparentScore = Player1.Score;
@@ -62,13 +60,16 @@ public class ScoreManager : MonoBehaviour {
             }
 
             Player1ScoreChanging = true;
-            ShakeScoreDisplay(Player1ScoreText, (int)(Mathf.Abs(Player1.Score - Player1ApparentScore)));
+            float diff = Mathf.Abs(Player1.Score - Player1ApparentScore);
+            ShakeScoreDisplay(Player1ScoreText, (int)(diff));
+
+            float changeRate = (diff <= 10) ? ScoreChangeRate : ScoreChangeRate * (diff / 10f); 
 
             float targetScore = Player1.Score;
             int direction = (targetScore > Player1ApparentScore) ? 1 : -1;
             while ((direction > 0 && (targetScore - Player1ApparentScore) > float.Epsilon) || (direction < 0 && (Player1ApparentScore - targetScore) > float.Epsilon)) {
                 yield return null;
-                Player1ApparentScore += direction * ScoreChangeRate * Time.deltaTime;
+                Player1ApparentScore += direction * changeRate * Time.deltaTime;
             }
             Player1ApparentScore = targetScore;
             Player1ScoreChanging = false;
@@ -83,13 +84,16 @@ public class ScoreManager : MonoBehaviour {
             }
 
             Player2ScoreChanging = true;
-            ShakeScoreDisplay(Player2ScoreText, (int)(Mathf.Abs(Player2.Score - Player2ApparentScore)));
+            float diff = Mathf.Abs(Player1.Score - Player1ApparentScore);
+            ShakeScoreDisplay(Player2ScoreText, (int)(diff));
+
+            float changeRate = (diff <= 10) ? ScoreChangeRate : ScoreChangeRate * (diff / 10f);
 
             float targetScore = Player2.Score;
             int direction = (targetScore > Player2ApparentScore) ? 1 : -1;
             while ((direction > 0 && (targetScore - Player2ApparentScore) > float.Epsilon) || (direction < 0 && (Player2ApparentScore - targetScore) > float.Epsilon)) {
                 yield return null;
-                Player2ApparentScore += direction * ScoreChangeRate * Time.deltaTime;
+                Player2ApparentScore += direction * changeRate * Time.deltaTime;
             }
             Player2ApparentScore = targetScore;
             Player2ScoreChanging = false;
@@ -101,10 +105,18 @@ public class ScoreManager : MonoBehaviour {
     }
 
     public void CreateScoreText(ScoreDisplay display, Vector3 position, int value) {
-        ScoreText scoreText = Instantiate(ScoreTextPrefab, Vector3.zero, Quaternion.identity) as ScoreText;
-        scoreText.transform.SetParent(ScoreTextParent);
-        scoreText.transform.position = position;
+        Debug.Log("Making score text");
+        Vector3 viewportPoint = Camera.main.WorldToViewportPoint(position);
 
-        scoreText.Initialize(display, value, ScoreTextMinSpeed, ScoreTextMaxSpeed);
+        GameObject clone = Instantiate(ScoreTextPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+        ScoreText scoreText = clone.GetComponent<ScoreText>();
+        RectTransform rect = clone.GetComponent<RectTransform>();
+        rect.SetParent(ScoreTextParent);
+        rect.anchorMin = new Vector2(viewportPoint.x, viewportPoint.y);
+        rect.anchorMax = new Vector2(viewportPoint.x, viewportPoint.y);
+        rect.anchoredPosition = Vector3.zero;
+        rect.localScale = Vector3.one;
+
+        scoreText.Initialize(display, value);
     }
 }

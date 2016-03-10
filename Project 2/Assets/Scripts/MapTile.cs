@@ -81,7 +81,8 @@ public class MapTile : MonoBehaviour {
             Debug.Log("Stepped on bomb!");
             if (player != null) {
                 player.Kill();
-                player.Score += ScoreManager.Instance.SCORE_BOMB; 
+                player.Score += ScoreManager.Instance.SCORE_BOMB;
+                ScoreManager.Instance.CreateScoreText(ScoreManager.Instance.Player2ScoreText, transform.position, ScoreManager.Instance.SCORE_BOMB);
             }
 
             ScreenShake.Instance.ShakeCamera();
@@ -97,6 +98,7 @@ public class MapTile : MonoBehaviour {
 
         if (IsGoal) {
             player.Score += ScoreManager.Instance.SCORE_GOAL;
+            ScoreManager.Instance.CreateScoreText(ScoreManager.Instance.Player2ScoreText, transform.position, ScoreManager.Instance.SCORE_GOAL);
             StartCoroutine(GameManager.Instance.GameOver());
         }
 
