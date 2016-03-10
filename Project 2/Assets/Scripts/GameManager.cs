@@ -109,18 +109,18 @@ public class GameManager : MonoBehaviour {
                     }
                     if (tileUp.P2Marked) {
                         player2.Score += ScoreManager.Instance.SCORE_CORRECT_MARK;
-                        ScoreManager.Instance.CreateScoreText(ScoreManager.Instance.Player2ScoreText, tileDown.transform.position, ScoreManager.Instance.SCORE_CORRECT_MARK);
+                        ScoreManager.Instance.CreateScoreText(ScoreManager.Instance.Player2ScoreText, tileUp.transform.position, ScoreManager.Instance.SCORE_CORRECT_MARK);
                     }
                 }
                 else {
                     tileUp.IsExplored = true;
                     if (tileUp.P1Marked) {
                         player1.Score += ScoreManager.Instance.SCORE_INCORRECT_MARK;
-                        ScoreManager.Instance.CreateScoreText(ScoreManager.Instance.Player1ScoreText, tileDown.transform.position, ScoreManager.Instance.SCORE_INCORRECT_MARK);
+                        ScoreManager.Instance.CreateScoreText(ScoreManager.Instance.Player1ScoreText, tileUp.transform.position, ScoreManager.Instance.SCORE_INCORRECT_MARK);
                     }
                     if (tileUp.P2Marked) {
                         player2.Score += ScoreManager.Instance.SCORE_INCORRECT_MARK;
-                        ScoreManager.Instance.CreateScoreText(ScoreManager.Instance.Player2ScoreText, tileDown.transform.position, ScoreManager.Instance.SCORE_INCORRECT_MARK);
+                        ScoreManager.Instance.CreateScoreText(ScoreManager.Instance.Player2ScoreText, tileUp.transform.position, ScoreManager.Instance.SCORE_INCORRECT_MARK);
                     }
                 }
 
